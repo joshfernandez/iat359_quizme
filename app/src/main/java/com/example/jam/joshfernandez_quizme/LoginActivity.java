@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         // And if there is a match, the login button lets the user access another activity
 
         buttonLogin.setOnClickListener((v)->{
-            SharedPreferences sharedPreferences = getSharedPreferences("MyData", MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getSharedPreferences("UserRegistrationData", MODE_PRIVATE);
             String name = sharedPreferences.getString("name", DEFAULT);
             String password = sharedPreferences.getString("password", DEFAULT);
 
