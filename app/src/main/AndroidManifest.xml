@@ -21,7 +21,8 @@
         <activity
             android:name=".LoginActivity"
             android:label="Log-In to QuizMe" />
-        <activity android:name=".MainMenuActivity"></activity>
+        <activity android:name=".MainMenuActivity" />
+        <activity android:name=".DisplayFlashcardsActivity" android:label="Your Flashcard Set"></activity>
     </application>
 
 </manifest>

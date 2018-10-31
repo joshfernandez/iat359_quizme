@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainMenuActivity">
+    tools:context=".DisplayFlashcardsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,23 +12,25 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textViewFlashcardSetList"
+            android:id="@+id/textViewFlashcardList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="8"/>
+            android:layout_weight="4" />
 
         <Button
-            android:id="@+id/buttonCreateNewFlashcardSet"
+            android:id="@+id/buttonCreateNewFlashcard"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Create New Flashcard Set" />
+            android:text="Create New Flashcard" />
 
         <Button
-            android:id="@+id/buttonUpdateSettings"
+            android:id="@+id/buttonDeleteFlashcardSet"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Update Settings" />
+            android:background="#F50000"
+            android:textColor="#FFFFFF"
+            android:text="Delete This Flashcard Set" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
