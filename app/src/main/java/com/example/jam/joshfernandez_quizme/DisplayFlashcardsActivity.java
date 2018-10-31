@@ -29,10 +29,10 @@ public class DisplayFlashcardsActivity extends AppCompatActivity {
 
             /*
                 1. Show a window to confirm that the user wants to delete the set.
-                2. If they hit OK, delete the set and proceed back to main menu.
+                2. If they hit OK, delete the set and go back to main menu.
              */
 
-            Toast.makeText(this, "Proceed to Main Menu Activity", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Going back to Main Menu Activity", Toast.LENGTH_SHORT).show();
             //Intent intent = new Intent(MainMenuActivity.this, SettingsActivity.class);
             //startActivity(intent);
         });
