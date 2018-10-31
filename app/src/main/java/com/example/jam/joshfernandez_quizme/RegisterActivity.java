@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     private Button buttonReg;
     private EditText editTextName, editTextPswd;
@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_register);
 
         buttonReg = (Button) findViewById(R.id.buttonReg);
         editTextName = (EditText) findViewById(R.id.editTextRegName);
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         // If the user accesses the application for the first time, they should be presented
         // with a screen asking them to enter a username and password
         if (!name.equals(DEFAULT)) {
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
             startActivity(intent);
         }
         buttonReg.setOnClickListener((v) -> {
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
             Toast.makeText(this, "Proceed to Login Activity", Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
             startActivity(intent);
         });
 
