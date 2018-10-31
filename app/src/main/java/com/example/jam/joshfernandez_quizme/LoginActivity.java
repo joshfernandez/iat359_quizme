@@ -33,9 +33,9 @@ public class LoginActivity extends AppCompatActivity {
 
             if((name.equals(editTextName.getText().toString())) && password.equals(editTextPswd.getText().toString()))
             {
-                Toast.makeText(this, "Proceed to Welcome Activity", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(LoginActivity.this, WelcomeActivity.class);
-//                startActivity(intent);
+                Toast.makeText(this, "Proceed to Main Menu Activity", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
+                startActivity(intent);
             }
             else
             {
