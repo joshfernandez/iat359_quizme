@@ -21,8 +21,8 @@ public class DisplayFlashcardsActivity extends AppCompatActivity {
 
         buttonCreateNewFlashcard.setOnClickListener((v)->{
             Toast.makeText(this, "Proceed to Create Flashcard Activity", Toast.LENGTH_SHORT).show();
-            //Intent intent = new Intent(DisplayFlashcardsActivity.this, CreateFlashcardActivity.class);
-            //startActivity(intent);
+            Intent intent = new Intent(DisplayFlashcardsActivity.this, CreateFlashcardActivity.class);
+            startActivity(intent);
         });
 
         buttonDeleteFlashcardSet.setOnClickListener((v)->{
