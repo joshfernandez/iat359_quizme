@@ -32,12 +32,26 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <TextView
-            android:id="@+id/textViewFlashcardDefinition"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
-            android:text="Definition:" />
+            android:layout_weight="3"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewFlashcardDefinition"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:text="Definition:" />
+
+            <Button
+                android:id="@+id/buttonLookUp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="Look Up In The Dictionary" />
+        </LinearLayout>
 
         <EditText
             android:id="@+id/editTextFlashcardDefinition"
