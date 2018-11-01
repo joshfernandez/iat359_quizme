@@ -25,7 +25,10 @@
         <activity
             android:name=".DisplayFlashcardsActivity"
             android:label="Your Flashcard Set" />
-        <activity android:name=".CreateFlashcardActivity" android:label="Flashcard Term and Definition"></activity>
+        <activity
+            android:name=".CreateFlashcardActivity"
+            android:label="Flashcard Term and Definition" />
+        <activity android:name=".SettingsActivity" android:label="Your Profile Settings"></activity>
     </application>
 
 </manifest>
