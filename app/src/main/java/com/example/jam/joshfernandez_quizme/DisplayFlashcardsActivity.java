@@ -8,6 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class DisplayFlashcardsActivity extends AppCompatActivity {
 
     private Button buttonCreateNewFlashcard, buttonDeleteFlashcardSet;
@@ -16,6 +19,10 @@ public class DisplayFlashcardsActivity extends AppCompatActivity {
     private RecyclerView recyclerViewFlashcards;
     private RecyclerView.Adapter myAdapter;
     private RecyclerView.LayoutManager myLayoutManager;
+
+    ArrayList<String> courses = new ArrayList<String>(
+            Arrays.asList("IAT100", "IAT102", "IAT201", "IAT235", "IAT265", "IAT312", "IAT 339", "IAT 359",
+                            "IAT381", "IAT351","IAT336", "IAT337", "IAT401", "IAT111", "IAT222", "IAT333", "IAT444", "IAT555"));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +62,7 @@ public class DisplayFlashcardsActivity extends AppCompatActivity {
         //recyclerViewFlashcards = (RecyclerView) findViewById(R.id.recyclerViewFlashcards);
         //
         //// Initialize myAdapter.
-        //myAdapter = new MyAdapter(listSensorNames, this);
+        //myAdapter = new MyAdapter(courses, this);
         //recyclerViewFlashcards.setAdapter(myAdapter);
         //
         //// Use a Linear Layout manager.
