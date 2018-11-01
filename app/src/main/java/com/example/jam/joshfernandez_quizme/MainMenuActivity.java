@@ -29,8 +29,8 @@ public class MainMenuActivity extends AppCompatActivity {
 
         buttonUpdateSettings.setOnClickListener((v)->{
             Toast.makeText(this, "Proceed to Settings Activity", Toast.LENGTH_SHORT).show();
-            //Intent intent = new Intent(MainMenuActivity.this, SettingsActivity.class);
-            //startActivity(intent);
+            Intent intent = new Intent(MainMenuActivity.this, SettingsActivity.class);
+            startActivity(intent);
         });
     }
 }
