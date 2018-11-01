@@ -47,7 +47,7 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
         buttonCreateNewFlashcard.setOnClickListener((v)->{
             Toast.makeText(this, "Proceed to Create Flashcard Activity", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(DisplayFlashcardsActivity.this, CreateFlashcardActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, REQUEST_CREATE_FLASHCARD);
         });
 
         buttonDeleteFlashcardSet.setOnClickListener((v)->{
@@ -124,7 +124,7 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
             if(resultCode==RESULT_OK) //make sure the request was successful
             {
 
-                if (data.hasExtra("Term Given") && data.hasExtra("Definition Given"));
+                if (data.hasExtra("Term Given"));
                 {
                     Toast.makeText(this, "DisplayFlashcards Successful. Flashcard will be added.", Toast.LENGTH_SHORT).show();
                     String term_given = data.getExtras().getString("Term Given");
