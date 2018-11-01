@@ -2,6 +2,7 @@ package com.example.jam.joshfernandez_quizme;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,6 +29,8 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
     private MyDatabase db;
     private MyAdapter myAdapter;
     private MyHelper helper;
+
+    static final int REQUEST_CREATE_FLASHCARD = 0; // This is the request code for requesting result from CreateFlashcard activity
 
     ArrayList<String> courses = new ArrayList<String>(
             Arrays.asList("IAT100", "IAT102", "IAT201", "IAT235", "IAT265", "IAT312", "IAT 339", "IAT 359",
@@ -116,5 +119,43 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
         Toast.makeText(this,
                 "row " + (1+position) + ":  " + flashcardTermTextView.getText() + " --> " + flashcardDefinitionTextView.getText(),
                 Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==REQUEST_CREATE_FLASHCARD) //check that we're processing the response from CreateFlashcard
+        {
+            if(resultCode==RESULT_OK) //make sure the request was successful
+            {
+
+                if (data.hasExtra("Term Given") && data.hasExtra("Definition Given"));
+                {
+                    Toast.makeText(this, "DisplayFlashcards Successful. Flashcard will be added.", Toast.LENGTH_SHORT).show();
+                    String term_given = data.getExtras().getString("Term Given");
+                    String definition_given = data.getExtras().getString("Definition Given");
+
+                    addFlashcard(term_given, definition_given);
+                }
+
+            }
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void addFlashcard(String term, String definition)
+    {
+        Toast.makeText(this, term + ": " + definition, Toast.LENGTH_SHORT).show();
+        long id = db.insertData(term, definition);
+
+        if (id < 0)
+        {
+            Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

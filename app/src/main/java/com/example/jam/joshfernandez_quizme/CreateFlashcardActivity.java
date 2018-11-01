@@ -14,6 +14,8 @@ public class CreateFlashcardActivity extends AppCompatActivity {
     private EditText editTextFlashcardTerm, editTextFlashcardDefinition;
     private String DEFAULT = "NULL";
 
+    String term, definition;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,32 +26,23 @@ public class CreateFlashcardActivity extends AppCompatActivity {
         editTextFlashcardDefinition = (EditText)findViewById(R.id.editTextFlashcardDefinition);
 
         buttonAddNewFlashcard.setOnClickListener((v)->{
-            Toast.makeText(this, "Going back to Display Flashcards Activity", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(CreateFlashcardActivity.this, DisplayFlashcardsActivity.class);
-            startActivity(intent);
+
+            term = editTextFlashcardTerm.getText().toString();
+            definition = editTextFlashcardDefinition.getText().toString();
+            Toast.makeText(this, "Going back to Display Flashcards Activity with" + term + ": " + definition, Toast.LENGTH_SHORT).show();
+
+            Intent i = getIntent(); // Getting the intent that has started this activity
+            i.putExtra("Term Given", term);
+            i.putExtra("Definition Given", definition);
+
+            editTextFlashcardTerm.setText("");
+            editTextFlashcardDefinition.setText("");
+
+            setResult(RESULT_OK, i);
+            finish();
+
         });
 
     }
 
-    public void addFlashcard(View view)
-    {
-        String term = editTextFlashcardTerm.getText().toString();
-        String definition = editTextFlashcardDefinition.getText().toString();
-
-        Toast.makeText(this, term + ": " + definition, Toast.LENGTH_SHORT).show();
-        long id = db.insertData(term, definition);
-
-        if (id < 0)
-        {
-            Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
-        }
-
-        editTextFlashcardTerm.setText("");
-        editTextFlashcardDefinition.setText("");
-
-    }
 }
