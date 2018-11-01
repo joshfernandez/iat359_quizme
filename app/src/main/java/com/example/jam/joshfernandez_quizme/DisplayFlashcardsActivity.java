@@ -32,10 +32,6 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
 
     static final int REQUEST_CREATE_FLASHCARD = 0; // This is the request code for requesting result from CreateFlashcard activity
 
-    ArrayList<String> courses = new ArrayList<String>(
-            Arrays.asList("IAT100", "IAT102", "IAT201", "IAT235", "IAT265", "IAT312", "IAT 339", "IAT 359",
-                            "IAT381", "IAT351","IAT336", "IAT337", "IAT401", "IAT111", "IAT222", "IAT333", "IAT444", "IAT555"));
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,8 +70,8 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
         recyclerViewFlashcards = (RecyclerView) findViewById(R.id.recyclerViewFlashcards);
 
         // Initialize myAdapter.
-        myAdapter = new MyAdapter(courses, this);
-        recyclerViewFlashcards.setAdapter(myAdapter);
+        //myAdapter = new MyAdapter(courses, this);
+        //recyclerViewFlashcards.setAdapter(myAdapter);
 
         // Use a Linear Layout manager.
         myLayoutManager = new LinearLayoutManager(this);
