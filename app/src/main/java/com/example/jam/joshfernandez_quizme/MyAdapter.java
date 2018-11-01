@@ -6,10 +6,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import static com.example.jam.joshfernandez_quizme.R.layout.row;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
@@ -25,16 +28,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public MyAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int ViewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View v = inflater.inflate(android.R.layout.simple_list_item_1, parent, false);
+        View v = inflater.inflate(row, parent, false);
         MyViewHolder viewHolder = new MyViewHolder(v);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
-        //TextView tv = (TextView) holder.itemView;
-        TextView tv = holder.myTextView;
-        tv.setText(list.get(position).toString());
+        String[]  results = (list.get(position).toString()).split(",");
+        holder.termTextView.setText(results[0]);
+        holder.definitionTextView.setText(results[1]);
     }
 
     @Override
@@ -44,12 +47,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView myTextView;
+        public TextView termTextView;
+        public TextView definitionTextView;
+
+        public LinearLayout myLayout;
+
         Context holderContext;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            myTextView = (TextView) itemView;
+            myLayout = (LinearLayout) itemView;
+
+            termTextView = (TextView) itemView.findViewById(R.id.flashcardTermEntry);
+            definitionTextView = (TextView) itemView.findViewById(R.id.flashcardDefinitionEntry);
+
             itemView.setOnClickListener(this);
             holderContext = itemView.getContext();
         }
@@ -57,8 +68,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         @Override
         public void onClick(View view) {
             Toast.makeText(holderContext,
-                    "You have clicked the " + ((TextView) view).getText().toString() + ".",
-                    Toast.LENGTH_LONG).show();
+                    "You have clicked " + ((TextView)view.findViewById(R.id.flashcardTermEntry)).getText().toString(),
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
