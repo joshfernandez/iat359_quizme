@@ -59,15 +59,15 @@ public class DisplayFlashcardsActivity extends AppCompatActivity {
             PART B - Prepare RecyclerView.
          */
 
-        //recyclerViewFlashcards = (RecyclerView) findViewById(R.id.recyclerViewFlashcards);
-        //
-        //// Initialize myAdapter.
-        //myAdapter = new MyAdapter(courses, this);
-        //recyclerViewFlashcards.setAdapter(myAdapter);
-        //
-        //// Use a Linear Layout manager.
-        //myLayoutManager = new LinearLayoutManager(this);
-        //recyclerViewFlashcards.setLayoutManager(myLayoutManager);
+        recyclerViewFlashcards = (RecyclerView) findViewById(R.id.recyclerViewFlashcards);
+
+        // Initialize myAdapter.
+        myAdapter = new MyAdapter(courses, this);
+        recyclerViewFlashcards.setAdapter(myAdapter);
+
+        // Use a Linear Layout manager.
+        myLayoutManager = new LinearLayoutManager(this);
+        recyclerViewFlashcards.setLayoutManager(myLayoutManager);
 
     }
 }
