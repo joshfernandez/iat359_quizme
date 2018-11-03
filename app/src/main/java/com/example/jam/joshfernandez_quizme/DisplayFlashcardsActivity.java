@@ -160,6 +160,31 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
         }
 
     }
+
+    public void viewAllData()
+    {
+        db = new MyDatabase(this);
+        helper = new MyHelper(this);
+
+        Cursor cursor = db.getData();
+
+        int index1 = cursor.getColumnIndex(Constants.TERM);
+        int index2 = cursor.getColumnIndex(Constants.DEFINITION);
+
+        ArrayList<String> mArrayList = new ArrayList<String>();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            String flashcardTerm = cursor.getString(index1);
+            String flashcardDefinition = cursor.getString(index2);
+
+            String s = flashcardTerm + ", " + flashcardDefinition;
+            mArrayList.add(s);
+            cursor.moveToNext();
+        }
+
+        myAdapter = new MyAdapter(mArrayList, this);
+        recyclerViewFlashcards.setAdapter(myAdapter);
+    }
 }
 
 class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
