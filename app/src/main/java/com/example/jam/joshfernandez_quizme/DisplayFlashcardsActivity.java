@@ -1,13 +1,20 @@
 package com.example.jam.joshfernandez_quizme;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -17,18 +24,20 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static com.example.jam.joshfernandez_quizme.R.layout.row;
+
 public class DisplayFlashcardsActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private Button buttonCreateNewFlashcard, buttonDeleteFlashcardSet;
     private String DEFAULT = "NULL";
 
     private RecyclerView recyclerViewFlashcards;
-    //private RecyclerView.Adapter myAdapter;
     private RecyclerView.LayoutManager myLayoutManager;
 
     private MyDatabase db;
     private MyAdapter myAdapter;
     private MyHelper helper;
+    ArrayList<String> mArrayList = new ArrayList<String>();
 
     static final int REQUEST_CREATE_FLASHCARD = 0; // This is the request code for requesting result from CreateFlashcard activity
 
@@ -90,7 +99,6 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
         int index1 = cursor.getColumnIndex(Constants.TERM);
         int index2 = cursor.getColumnIndex(Constants.DEFINITION);
 
-        ArrayList<String> mArrayList = new ArrayList<String>();
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             String flashcardTerm = cursor.getString(index1);
@@ -131,6 +139,7 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
                     String definition_given = data.getExtras().getString("Definition Given");
 
                     addFlashcard(term_given, definition_given);
+                    updateRecyclerViewFlashcards();
                 }
 
             }
@@ -152,6 +161,31 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
         {
             Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
         }
-
     }
+
+    public void updateRecyclerViewFlashcards()
+    {
+        Cursor cursor = db.getData();
+
+        int index1 = cursor.getColumnIndex(Constants.TERM);
+        int index2 = cursor.getColumnIndex(Constants.DEFINITION);
+
+        //ArrayList<String> mArrayList = new ArrayList<String>();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            String flashcardTerm = cursor.getString(index1);
+            String flashcardDefinition = cursor.getString(index2);
+
+            String s = flashcardTerm + ", " + flashcardDefinition;
+            mArrayList.add(s);
+            cursor.moveToNext();
+        }
+
+        Log.v("h2", "" + mArrayList);
+
+        myAdapter.notifyDataSetChanged();  // advise the adapter that the data set has changed
+    }
+
+
 }
+

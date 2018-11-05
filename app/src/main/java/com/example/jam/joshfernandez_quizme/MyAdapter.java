@@ -2,6 +2,7 @@ package com.example.jam.joshfernandez_quizme;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,13 +51,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public TextView termTextView;
         public TextView definitionTextView;
 
-        public LinearLayout myLayout;
+        public ConstraintLayout myLayout;
 
         Context holderContext;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            myLayout = (LinearLayout) itemView;
+            myLayout = (ConstraintLayout) itemView;
 
             termTextView = (TextView) itemView.findViewById(R.id.flashcardTermEntry);
             definitionTextView = (TextView) itemView.findViewById(R.id.flashcardDefinitionEntry);
