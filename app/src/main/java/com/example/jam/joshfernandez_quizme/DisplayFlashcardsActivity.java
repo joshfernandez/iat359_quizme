@@ -139,28 +139,9 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
                     String definition_given = data.getExtras().getString("Definition Given");
 
                     addFlashcard(term_given, definition_given);
+                    updateRecyclerViewFlashcards();
                 }
 
-
-                Cursor cursor = db.getData();
-
-                int index1 = cursor.getColumnIndex(Constants.TERM);
-                int index2 = cursor.getColumnIndex(Constants.DEFINITION);
-
-                //ArrayList<String> mArrayList = new ArrayList<String>();
-                cursor.moveToFirst();
-                while (!cursor.isAfterLast()) {
-                    String flashcardTerm = cursor.getString(index1);
-                    String flashcardDefinition = cursor.getString(index2);
-
-                    String s = flashcardTerm + ", " + flashcardDefinition;
-                    mArrayList.add(s);
-                    cursor.moveToNext();
-                }
-
-                Log.v("h2", "" + mArrayList);
-
-                myAdapter.notifyDataSetChanged();  // advise the adapter that the data set has changed
             }
         }
 
@@ -180,6 +161,29 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
         {
             Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void updateRecyclerViewFlashcards()
+    {
+        Cursor cursor = db.getData();
+
+        int index1 = cursor.getColumnIndex(Constants.TERM);
+        int index2 = cursor.getColumnIndex(Constants.DEFINITION);
+
+        //ArrayList<String> mArrayList = new ArrayList<String>();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            String flashcardTerm = cursor.getString(index1);
+            String flashcardDefinition = cursor.getString(index2);
+
+            String s = flashcardTerm + ", " + flashcardDefinition;
+            mArrayList.add(s);
+            cursor.moveToNext();
+        }
+
+        Log.v("h2", "" + mArrayList);
+
+        myAdapter.notifyDataSetChanged();  // advise the adapter that the data set has changed
     }
 
 
