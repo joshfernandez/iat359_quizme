@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,6 +14,8 @@ public class CreateFlashcardActivity extends AppCompatActivity {
     private Button buttonAddNewFlashcard, buttonLookUp;
     private EditText editTextFlashcardTerm, editTextFlashcardDefinition;
     private String DEFAULT = "NULL";
+
+    String term, definition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +37,23 @@ public class CreateFlashcardActivity extends AppCompatActivity {
         });
 
         buttonAddNewFlashcard.setOnClickListener((v)->{
-            Toast.makeText(this, "Going back to Display Flashcards Activity", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(CreateFlashcardActivity.this, DisplayFlashcardsActivity.class);
-            startActivity(intent);
+
+            term = editTextFlashcardTerm.getText().toString();
+            definition = editTextFlashcardDefinition.getText().toString();
+            Toast.makeText(this, "Going back to Display Flashcards Activity with " + term + ": " + definition, Toast.LENGTH_SHORT).show();
+
+            Intent i = getIntent(); // Getting the intent that has started this activity
+            i.putExtra("Term Given", term);
+            i.putExtra("Definition Given", definition);
+
+            editTextFlashcardTerm.setText("");
+            editTextFlashcardDefinition.setText("");
+
+            setResult(RESULT_OK, i);
+            finish();
+
         });
 
     }
+
 }
