@@ -16,7 +16,7 @@
             android:id="@+id/recyclerViewFlashcards"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="8"
+            android:layout_weight="7"
             android:padding="6dp"
             android:scrollbars="vertical"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
@@ -27,6 +27,13 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="Create New Flashcard" />
+
+        <Button
+            android:id="@+id/buttonPlayHeadsUp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Heads Up Game (Trial)" />
 
         <Button
             android:id="@+id/buttonDeleteFlashcardSet"

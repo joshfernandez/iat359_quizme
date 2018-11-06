@@ -4,6 +4,7 @@
 
     <!-- Accessing camera hardware -->
     <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.sensor.gyroscope" />
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -33,8 +34,11 @@
             android:label="Your Flashcard Set" />
         <activity
             android:name=".CreateFlashcardActivity"
-            android:label="Flashcard Term and Definition" />
-        <activity android:name=".SettingsActivity" android:label="Your Profile Settings"></activity>
+            android:label="Create New Flashcard" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="Your Profile Settings" />
+        <activity android:name=".HeadsUpActivity" android:label="Heads Up Game"></activity>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -43,9 +47,8 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>

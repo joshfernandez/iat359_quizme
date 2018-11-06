@@ -28,7 +28,7 @@ import static com.example.jam.joshfernandez_quizme.R.layout.row;
 
 public class DisplayFlashcardsActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    private Button buttonCreateNewFlashcard, buttonDeleteFlashcardSet;
+    private Button buttonCreateNewFlashcard, buttonDeleteFlashcardSet, buttonPlayHeadsUp;
     private String DEFAULT = "NULL";
 
     private RecyclerView recyclerViewFlashcards;
@@ -52,11 +52,18 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
 
         buttonCreateNewFlashcard = (Button)findViewById(R.id.buttonCreateNewFlashcard);
         buttonDeleteFlashcardSet = (Button)findViewById(R.id.buttonDeleteFlashcardSet);
+        buttonPlayHeadsUp = (Button)findViewById(R.id.buttonPlayHeadsUp);
 
         buttonCreateNewFlashcard.setOnClickListener((v)->{
             Toast.makeText(this, "Proceed to Create Flashcard Activity", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(DisplayFlashcardsActivity.this, CreateFlashcardActivity.class);
             startActivityForResult(intent, REQUEST_CREATE_FLASHCARD);
+        });
+
+        buttonPlayHeadsUp.setOnClickListener((v)->{
+            Toast.makeText(this, "Proceed to Heads Up Activity", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(DisplayFlashcardsActivity.this, HeadsUpActivity.class);
+            startActivity(intent);
         });
 
         buttonDeleteFlashcardSet.setOnClickListener((v)->{
