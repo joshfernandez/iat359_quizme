@@ -33,7 +33,7 @@
             android:label="Your Flashcard Set" />
         <activity
             android:name=".CreateFlashcardActivity"
-            android:label="Flashcard Term and Definition" />
+            android:label="Create New Flashcard" />
         <activity
             android:name=".SettingsActivity"
             android:label="Your Profile Settings" />
