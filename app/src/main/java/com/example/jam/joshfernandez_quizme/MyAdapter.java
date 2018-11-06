@@ -1,6 +1,7 @@
 package com.example.jam.joshfernandez_quizme;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -69,8 +70,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         @Override
         public void onClick(View view) {
             Toast.makeText(holderContext,
-                    "You have clicked " + ((TextView)view.findViewById(R.id.flashcardTermEntry)).getText().toString(),
+                    "Proceed to Update Flashcard Activity for " + ((TextView)view.findViewById(R.id.flashcardTermEntry)).getText().toString(),
                     Toast.LENGTH_SHORT).show();
+
+            //Intent intent = new Intent(MyViewHolder.this, UpdateFlashcardActivity.class);
+            //startActivity(intent);
         }
     }
 
