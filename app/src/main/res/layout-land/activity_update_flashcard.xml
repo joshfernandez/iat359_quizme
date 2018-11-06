@@ -42,7 +42,7 @@
                 android:id="@+id/textViewUpdateDefinition"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:text="Definition:" />
 
             <Button
@@ -50,7 +50,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:layout_gravity="top|center"
                 android:text="Look Up In The Dictionary" />
         </LinearLayout>
 
@@ -58,7 +57,7 @@
             android:id="@+id/editTextUpdateDefinition"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="15"
+            android:layout_weight="5"
             android:ems="10"
             android:gravity="left|top"
             android:inputType="textMultiLine" />
