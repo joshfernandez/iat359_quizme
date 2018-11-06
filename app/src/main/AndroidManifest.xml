@@ -34,7 +34,10 @@
         <activity
             android:name=".CreateFlashcardActivity"
             android:label="Flashcard Term and Definition" />
-        <activity android:name=".SettingsActivity" android:label="Your Profile Settings"></activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="Your Profile Settings" />
+        <activity android:name=".HeadsUpActivity" android:label="Heads Up Game"></activity>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -43,9 +46,8 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>
