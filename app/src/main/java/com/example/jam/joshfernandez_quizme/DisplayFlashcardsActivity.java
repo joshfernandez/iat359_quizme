@@ -62,8 +62,8 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
 
         buttonPlayHeadsUp.setOnClickListener((v)->{
             Toast.makeText(this, "Proceed to Heads Up Activity", Toast.LENGTH_SHORT).show();
-            //Intent intent = new Intent(DisplayFlashcardsActivity.this, HeadsUpActivity.class);
-            //startActivity(intent);
+            Intent intent = new Intent(DisplayFlashcardsActivity.this, HeadsUpActivity.class);
+            startActivity(intent);
         });
 
         buttonDeleteFlashcardSet.setOnClickListener((v)->{
