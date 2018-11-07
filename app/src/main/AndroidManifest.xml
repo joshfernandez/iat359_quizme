@@ -41,7 +41,9 @@
         <activity
             android:name=".HeadsUpActivity"
             android:label="Heads Up Game" />
-        <activity android:name=".UpdateFlashcardActivity" android:label="Update Flashcard"></activity>
+        <activity
+            android:name=".UpdateFlashcardActivity"
+            android:label="Update Flashcard"></activity>
 
         <provider
             android:name="android.support.v4.content.FileProvider"

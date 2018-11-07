@@ -8,19 +8,17 @@ import android.widget.Toast;
 
 public class MyHelper extends SQLiteOpenHelper {
 
-    private Context context;
-
     private static final String CREATE_TABLE =
-            "CREATE TABLE "+
+            "CREATE TABLE " +
                     Constants.TABLE_NAME + " (" +
                     Constants.UID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     Constants.TERM + " TEXT, " +
-                    Constants.DEFINITION + " TEXT);" ;
-
+                    Constants.DEFINITION + " TEXT);";
     private static final String DROP_TABLE = "DROP TABLE IF EXISTS " + Constants.TABLE_NAME;
+    private Context context;
 
-    public MyHelper(Context context){
-        super (context, Constants.DATABASE_NAME, null, Constants.DATABASE_VERSION);
+    public MyHelper(Context context) {
+        super(context, Constants.DATABASE_NAME, null, Constants.DATABASE_VERSION);
         this.context = context;
     }
 

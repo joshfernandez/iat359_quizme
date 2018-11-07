@@ -2,32 +2,30 @@ package com.example.jam.joshfernandez_quizme;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class CreateFlashcardActivity extends AppCompatActivity {
 
+    String term, definition;
     private Button buttonAddNewFlashcard, buttonLookUp;
     private EditText editTextFlashcardTerm, editTextFlashcardDefinition;
     private String DEFAULT = "NULL";
-
-    String term, definition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_flashcard);
 
-        buttonAddNewFlashcard = (Button)findViewById(R.id.buttonAddNewFlashcard);
-        buttonLookUp = (Button)findViewById(R.id.buttonLookUp);
-        editTextFlashcardTerm = (EditText)findViewById(R.id.editTextFlashcardTerm);
-        editTextFlashcardDefinition = (EditText)findViewById(R.id.editTextFlashcardDefinition);
+        buttonAddNewFlashcard = (Button) findViewById(R.id.buttonAddNewFlashcard);
+        buttonLookUp = (Button) findViewById(R.id.buttonLookUp);
+        editTextFlashcardTerm = (EditText) findViewById(R.id.editTextFlashcardTerm);
+        editTextFlashcardDefinition = (EditText) findViewById(R.id.editTextFlashcardDefinition);
 
-        buttonLookUp.setOnClickListener((v)->{
+        buttonLookUp.setOnClickListener((v) -> {
             String term_given = editTextFlashcardTerm.getText().toString();
 
             Toast.makeText(this, "Proceed to the dictionary for " + term_given, Toast.LENGTH_SHORT).show();
@@ -36,7 +34,7 @@ public class CreateFlashcardActivity extends AppCompatActivity {
             startActivity(webIntent);
         });
 
-        buttonAddNewFlashcard.setOnClickListener((v)->{
+        buttonAddNewFlashcard.setOnClickListener((v) -> {
 
             term = editTextFlashcardTerm.getText().toString();
             definition = editTextFlashcardDefinition.getText().toString();

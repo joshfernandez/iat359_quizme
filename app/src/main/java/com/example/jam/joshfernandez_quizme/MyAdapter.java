@@ -1,14 +1,12 @@
 package com.example.jam.joshfernandez_quizme;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +35,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
-        String[]  results = (list.get(position).toString()).split(",");
+        String[] results = (list.get(position).toString()).split(",");
         holder.termTextView.setText(results[0]);
         holder.definitionTextView.setText(results[1]);
     }
@@ -70,7 +68,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         @Override
         public void onClick(View view) {
             Toast.makeText(holderContext,
-                    "Proceed to Update Flashcard Activity for " + ((TextView)view.findViewById(R.id.flashcardTermEntry)).getText().toString(),
+                    "Proceed to Update Flashcard Activity for " + ((TextView) view.findViewById(R.id.flashcardTermEntry)).getText().toString(),
                     Toast.LENGTH_SHORT).show();
 
             //Intent intent = new Intent(MyViewHolder.this, UpdateFlashcardActivity.class);

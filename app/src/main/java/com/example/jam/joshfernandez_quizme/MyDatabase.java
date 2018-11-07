@@ -4,22 +4,19 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-import android.widget.Toast;
 
 public class MyDatabase {
 
+    private final MyHelper helper;
     private SQLiteDatabase db;
     private Context context;
-    private final MyHelper helper;
 
-    public MyDatabase (Context c){
+    public MyDatabase(Context c) {
         context = c;
         helper = new MyHelper(context);
     }
 
-    public long insertData (String term, String definition)
-    {
+    public long insertData(String term, String definition) {
         db = helper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(Constants.TERM, term);
@@ -29,8 +26,7 @@ public class MyDatabase {
         return id;
     }
 
-    public Cursor getData()
-    {
+    public Cursor getData() {
         SQLiteDatabase db = helper.getWritableDatabase();
 
         String[] columns = {Constants.UID, Constants.TERM, Constants.DEFINITION};
@@ -39,8 +35,7 @@ public class MyDatabase {
     }
 
 
-    public String getSelectedData(String term)
-    {
+    public String getSelectedData(String term) {
         //select flashcards from database of type 'term'
         SQLiteDatabase db = helper.getWritableDatabase();
         String[] columns = {Constants.TERM, Constants.DEFINITION};

@@ -54,18 +54,17 @@ public class CameraUtils {
                 //m.postScale((float) bm.getWidth(), (float) bm.getHeight());
                 // if(m.preRotate(90)){
                 Log.e("in orientation", "" + orientation);
-                bitmap = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(),bm.getHeight(), m, true);
+                bitmap = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(), bm.getHeight(), m, true);
                 return bitmap;
             } else if (orientation == ExifInterface.ORIENTATION_ROTATE_90) {
                 m.postRotate(90);
                 Log.e("in orientation", "" + orientation);
-                bitmap = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(),bm.getHeight(), m, true);
+                bitmap = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(), bm.getHeight(), m, true);
                 return bitmap;
-            }
-            else if (orientation == ExifInterface.ORIENTATION_ROTATE_270) {
+            } else if (orientation == ExifInterface.ORIENTATION_ROTATE_270) {
                 m.postRotate(270);
                 Log.e("in orientation", "" + orientation);
-                bitmap = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(),bm.getHeight(), m, true);
+                bitmap = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(), bm.getHeight(), m, true);
                 return bitmap;
             }
             return bitmap;
