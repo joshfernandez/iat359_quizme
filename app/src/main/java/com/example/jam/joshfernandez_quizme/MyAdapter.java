@@ -74,6 +74,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
             // The biggest accomplishment of my life!
             Intent intent = new Intent(holderContext, UpdateFlashcardActivity.class);
+            intent.putExtra("Term", termTextView.getText());
+            intent.putExtra("Definition", definitionTextView.getText());
             holderContext.startActivity(intent);
         }
     }
