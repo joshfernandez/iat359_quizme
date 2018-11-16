@@ -9,11 +9,12 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <!--Icon from: https://www.flaticon.com/free-icon/creativity_349382#term=education&page=1&position=49-->
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/quizme_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/quizme_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
