@@ -186,7 +186,7 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
 
     public void updateRecyclerViewFlashcards() {
         mArrayList.clear();
-        myAdapter.notifyDataSetChanged();
+        myAdapter.notifyDataSetChanged(); // advise the adapter that the data set has changed
 
         Cursor cursor = db.getData();
 
