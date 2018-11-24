@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import static com.example.jam.joshfernandez_quizme.DisplayFlashcardsActivity.*;
+import static com.example.jam.joshfernandez_quizme.DisplayFlashcardsActivity.REQUEST_UPDATE_FLASHCARD;
 import static com.example.jam.joshfernandez_quizme.R.layout.row;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
@@ -80,9 +80,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             intent.putExtra("Term", termTextView.getText());
             intent.putExtra("Definition", definitionTextView.getText());
 
-            // This is also the biggest accomplishment of my life!
-            // However, I am aware that this is slightly dangerous code.
-            // Source: https://stackoverflow.com/questions/2848775/use-startactivityforresult-from-non-activity
+            /*
+                This is also the biggest accomplishment of my life!
+                However, I am aware that this is slightly dangerous code.
+                Source: https://stackoverflow.com/questions/2848775/use-startactivityforresult-from-non-activity
+             */
             if (holderContext instanceof Activity) {
                 ((Activity) holderContext).startActivityForResult(intent, REQUEST_UPDATE_FLASHCARD);
             } else {

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -45,14 +44,13 @@ public class UpdateFlashcardActivity extends AppCompatActivity {
 
         buttonUpdateFlashcard.setOnClickListener((v) -> {
 
+            // Retrieve the strings inside each of the TextViews
             term_new = editTextUpdateTerm.getText().toString();
             definition_new = editTextUpdateDefinition.getText().toString();
 
             // Removes leading and trailing whitespace
             term_new.trim();
             definition_new.trim();
-
-            Log.d("Update Flashcard", term_old + term_new + definition_new);
 
             Toast.makeText(this, "Going back to Display Flashcards Activity with " + term_new + ": " + definition_new, Toast.LENGTH_SHORT).show();
 
