@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 public class UpdateFlashcardActivity extends AppCompatActivity {
 
+    String term, definition;
     private Button buttonUpdateFlashcard, buttonLookUp;
     private EditText editTextUpdateTerm, editTextUpdateDefinition;
 
@@ -35,6 +36,24 @@ public class UpdateFlashcardActivity extends AppCompatActivity {
             Uri webpage = Uri.parse("http://www.merriam-webster.com/dictionary/" + term_given);
             Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
             startActivity(webIntent);
+        });
+
+        buttonUpdateFlashcard.setOnClickListener((v) -> {
+
+            term = editTextUpdateTerm.getText().toString();
+            definition = editTextUpdateDefinition.getText().toString();
+            Toast.makeText(this, "Going back to Display Flashcards Activity with " + term + ": " + definition, Toast.LENGTH_SHORT).show();
+
+            Intent i = getIntent(); // Getting the intent that has started this activity
+            i.putExtra("Term Given", term);
+            i.putExtra("Definition Given", definition);
+
+            editTextUpdateTerm.setText("");
+            editTextUpdateDefinition.setText("");
+
+            setResult(RESULT_OK, i);
+            finish();
+
         });
     }
 }

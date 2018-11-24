@@ -1,10 +1,12 @@
 package com.example.jam.joshfernandez_quizme;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static android.app.Activity.RESULT_OK;
+import static com.example.jam.joshfernandez_quizme.DisplayFlashcardsActivity.*;
 import static com.example.jam.joshfernandez_quizme.R.layout.row;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
@@ -76,8 +80,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             Intent intent = new Intent(holderContext, UpdateFlashcardActivity.class);
             intent.putExtra("Term", termTextView.getText());
             intent.putExtra("Definition", definitionTextView.getText());
-            holderContext.startActivity(intent);
+
+            // This is also the biggest accomplishment of my life!
+            // However, I am aware that this is slightly dangerous code.
+            // Source: https://stackoverflow.com/questions/2848775/use-startactivityforresult-from-non-activity
+            if (holderContext instanceof Activity) {
+                ((Activity) holderContext).startActivityForResult(intent, REQUEST_UPDATE_FLASHCARD);
+            } else {
+                Log.e("MyAdapter", "holderContext should be an instanceof Activity.");
+            }
         }
+
     }
 
 }

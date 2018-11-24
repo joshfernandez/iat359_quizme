@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class DisplayFlashcardsActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     static final int REQUEST_CREATE_FLASHCARD = 0; // This is the request code for requesting result from CreateFlashcard activity
+    static final int REQUEST_UPDATE_FLASHCARD = 1; // This is the request code for requesting result from UpdateFlashcard activity
     ArrayList<String> mArrayList = new ArrayList<String>();
     private Button buttonCreateNewFlashcard, buttonDeleteFlashcardSet, buttonPlayHeadsUp;
     private String DEFAULT = "NULL";
@@ -121,7 +122,7 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CREATE_FLASHCARD) //check that we're processing the response from CreateFlashcard
+        if (requestCode == REQUEST_CREATE_FLASHCARD || requestCode == REQUEST_UPDATE_FLASHCARD) //check that we're processing the response from CreateFlashcard
         {
             if (resultCode == RESULT_OK) //make sure the request was successful
             {
