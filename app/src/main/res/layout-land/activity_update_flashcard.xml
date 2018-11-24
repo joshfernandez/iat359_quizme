@@ -62,12 +62,30 @@
             android:gravity="left|top"
             android:inputType="textMultiLine" />
 
-        <Button
-            android:id="@+id/buttonUpdateFlashcard"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
-            android:text="Update This Flashcard" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonDeleteFlashcard"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#F50000"
+                android:textColor="#FFFFFF"
+                android:text="Delete This Flashcard" />
+
+            <Button
+                android:id="@+id/buttonUpdateFlashcard"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="#FFC000"
+                android:textColor="#FFFFFF"
+                android:text="Update This Flashcard" />
+        </LinearLayout>
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

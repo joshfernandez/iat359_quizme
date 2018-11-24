@@ -26,13 +26,20 @@ public class MyDatabase {
         return id;
     }
 
-    public long updateData(String term, String definition, int position) {
+    public long updateData(String term_old, String term_new, String definition) {
         db = helper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Constants.TERM, term);
+        contentValues.put(Constants.TERM, term_new);
         contentValues.put(Constants.DEFINITION, definition);
 
-        long id = db.update(Constants.TABLE_NAME, contentValues, "_id=" + position, null);
+        long id = db.update(Constants.TABLE_NAME, contentValues, "Term=\'" + term_old + "\'", null);
+        return id;
+    }
+
+    public long deleteData(String term) {
+        db = helper.getWritableDatabase();
+
+        long id = db.delete(Constants.TABLE_NAME, "Term=\'" + term + "\'", null);
         return id;
     }
 
