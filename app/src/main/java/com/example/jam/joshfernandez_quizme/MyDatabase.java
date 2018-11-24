@@ -26,6 +26,16 @@ public class MyDatabase {
         return id;
     }
 
+    public long updateData(String term, String definition, int position) {
+        db = helper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Constants.TERM, term);
+        contentValues.put(Constants.DEFINITION, definition);
+
+        long id = db.update(Constants.TABLE_NAME, contentValues, "_id=" + position, null);
+        return id;
+    }
+
     public Cursor getData() {
         SQLiteDatabase db = helper.getWritableDatabase();
 
