@@ -20,7 +20,6 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
 
     static final int REQUEST_CREATE_FLASHCARD = 0; // This is the request code for requesting result from CreateFlashcard activity
     static final int REQUEST_UPDATE_FLASHCARD = 1; // This is the request code for requesting result from UpdateFlashcard activity
-    static final int DEFAULT_INTEGER = 0;
     ArrayList<String> mArrayList = new ArrayList<String>();
     private Button buttonCreateNewFlashcard, buttonDeleteFlashcardSet, buttonPlayHeadsUp;
     private String DEFAULT = "NULL";
@@ -145,21 +144,21 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
             if (resultCode == RESULT_OK) //make sure the request was successful
             {
 
-                if (data.hasExtra("Term Given"))
+                if (data.hasExtra("Update Flashcard"))
                 {
                     Toast.makeText(this, "DisplayFlashcards Successful. Flashcard will be updated.", Toast.LENGTH_SHORT).show();
+                    String term_to_be_updated = data.getExtras().getString("Term To Be Updated");
                     String term_given = data.getExtras().getString("Term Given");
                     String definition_given = data.getExtras().getString("Definition Given");
-                    int position_given = data.getExtras().getInt("Position Given", DEFAULT_INTEGER);
 
-                    updateFlashcard(term_given, definition_given, position_given);
+                    updateFlashcard(term_to_be_updated, term_given, definition_given);
                     updateRecyclerViewFlashcards();
                 }
                 else if (data.hasExtra("Delete Flashcard"))
                 {
                     Toast.makeText(this, "DisplayFlashcards Successful. Flashcard will be deleted.", Toast.LENGTH_SHORT).show();
-                    int position_given = data.getExtras().getInt("Position Given", DEFAULT_INTEGER);
-                    deleteFlashcard(position_given);
+                    String term_given = data.getExtras().getString("Term To Be Deleted");
+                    deleteFlashcard(term_given);
                     updateRecyclerViewFlashcards();
                 }
 
@@ -180,9 +179,9 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
         }
     }
 
-    public void updateFlashcard(String term, String definition, int position) {
-        Toast.makeText(this, "Updating " + term + ": " + definition + " at position " + position, Toast.LENGTH_SHORT).show();
-        long id = db.updateData(term, definition, position + 1);
+    public void updateFlashcard(String term_old, String term_new, String definition) {
+        Toast.makeText(this, "Updating " + term_old + " to " + term_new + ": " + definition, Toast.LENGTH_SHORT).show();
+        long id = db.updateData(term_old, term_new, definition);
 
         if (id < 0) {
             Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
@@ -191,9 +190,9 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
         }
     }
 
-    public void deleteFlashcard(int position) {
-        Toast.makeText(this, "Deleting flashcard at position " + position, Toast.LENGTH_SHORT).show();
-        long id = db.deleteData(position + 1);
+    public void deleteFlashcard(String term) {
+        Toast.makeText(this, "Deleting flashcard of " + term, Toast.LENGTH_SHORT).show();
+        long id = db.deleteData(term);
 
         if (id < 0) {
             Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();

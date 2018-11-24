@@ -80,9 +80,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             intent.putExtra("Term", termTextView.getText());
             intent.putExtra("Definition", definitionTextView.getText());
 
-            int position = getAdapterPosition();
-            intent.putExtra("Position", position);
-
             // This is also the biggest accomplishment of my life!
             // However, I am aware that this is slightly dangerous code.
             // Source: https://stackoverflow.com/questions/2848775/use-startactivityforresult-from-non-activity

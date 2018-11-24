@@ -4,16 +4,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import static com.example.jam.joshfernandez_quizme.DisplayFlashcardsActivity.DEFAULT_INTEGER;
-
 public class UpdateFlashcardActivity extends AppCompatActivity {
 
-    String term, definition;
-    int position;
+    String term_old, definition_old, term_new, definition_new;
     private Button buttonUpdateFlashcard, buttonDeleteFlashcard, buttonLookUp;
     private EditText editTextUpdateTerm, editTextUpdateDefinition;
 
@@ -30,11 +28,11 @@ public class UpdateFlashcardActivity extends AppCompatActivity {
 
         Intent data = getIntent();
 
-        editTextUpdateTerm.setText(data.getStringExtra("Term"));
-        editTextUpdateDefinition.setText(data.getStringExtra("Definition"));
-        position = data.getIntExtra("Position", DEFAULT_INTEGER);
+        term_old = data.getStringExtra("Term");
+        definition_old = data.getStringExtra("Definition");
 
-        Toast.makeText(this, "Position: " + position, Toast.LENGTH_LONG);
+        editTextUpdateTerm.setText(term_old);
+        editTextUpdateDefinition.setText(definition_old);
 
         buttonLookUp.setOnClickListener((v) -> {
             String term_given = editTextUpdateTerm.getText().toString();
@@ -47,19 +45,22 @@ public class UpdateFlashcardActivity extends AppCompatActivity {
 
         buttonUpdateFlashcard.setOnClickListener((v) -> {
 
-            term = editTextUpdateTerm.getText().toString();
-            definition = editTextUpdateDefinition.getText().toString();
+            term_new = editTextUpdateTerm.getText().toString();
+            definition_new = editTextUpdateDefinition.getText().toString();
 
             // Removes leading and trailing whitespace
-            term.trim();
-            definition.trim();
+            term_new.trim();
+            definition_new.trim();
 
-            Toast.makeText(this, "Going back to Display Flashcards Activity with " + term + " (Position) " + position + ": " + definition, Toast.LENGTH_SHORT).show();
+            Log.d("Update Flashcard", term_old + term_new + definition_new);
+
+            Toast.makeText(this, "Going back to Display Flashcards Activity with " + term_new + ": " + definition_new, Toast.LENGTH_SHORT).show();
 
             Intent i = getIntent(); // Getting the intent that has started this activity
-            i.putExtra("Term Given", term);
-            i.putExtra("Definition Given", definition);
-            i.putExtra("Position Given", position);
+            i.putExtra("Update Flashcard", "Update Flashcard");
+            i.putExtra("Term To Be Updated", term_old);
+            i.putExtra("Term Given", term_new);
+            i.putExtra("Definition Given", definition_new);
 
             editTextUpdateTerm.setText("");
             editTextUpdateDefinition.setText("");
@@ -71,11 +72,11 @@ public class UpdateFlashcardActivity extends AppCompatActivity {
 
         buttonDeleteFlashcard.setOnClickListener((v) -> {
 
-            Toast.makeText(this, "Going back to Display Flashcards Activity with " + term + " (Position) " + position + ": " + definition, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Going back to Display Flashcards Activity with " + term_old + ": " + definition_old, Toast.LENGTH_SHORT).show();
 
             Intent i = getIntent(); // Getting the intent that has started this activity
             i.putExtra("Delete Flashcard", "Delete Flashcard");
-            i.putExtra("Position Given", position);
+            i.putExtra("Term To Be Deleted", term_old);
 
             editTextUpdateTerm.setText("");
             editTextUpdateDefinition.setText("");
