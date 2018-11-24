@@ -58,7 +58,7 @@
             android:id="@+id/editTextUpdateDefinition"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="15"
+            android:layout_weight="12"
             android:ems="10"
             android:gravity="left|top"
             android:inputType="textMultiLine" />
@@ -68,7 +68,18 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
+            android:background="#FFC000"
+            android:textColor="#FFFFFF"
             android:text="Update This Flashcard" />
+
+        <Button
+            android:id="@+id/buttonDeleteFlashcard"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:background="#F50000"
+            android:textColor="#FFFFFF"
+            android:text="Delete This Flashcard" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
