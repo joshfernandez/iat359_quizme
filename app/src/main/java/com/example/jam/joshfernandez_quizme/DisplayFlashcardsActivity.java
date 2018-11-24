@@ -170,12 +170,20 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
 
     public void addFlashcard(String term, String definition) {
         Toast.makeText(this, "Adding " + term + ": " + definition, Toast.LENGTH_SHORT).show();
-        long id = db.insertData(term, definition);
 
-        if (id < 0) {
-            Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
+        // First, we need to take care of duplicate flashcards.
+        if(!db.getSelectedData(term).isEmpty()){
+            Toast.makeText(this, "ERROR: You cannot add a duplicate flashcard of the same term " + term, Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            long id = db.insertData(term, definition);
+
+            if (id < 0) {
+                Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
