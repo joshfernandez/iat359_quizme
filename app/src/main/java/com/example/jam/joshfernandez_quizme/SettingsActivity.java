@@ -4,11 +4,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,17 +21,14 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.example.jam.joshfernandez_quizme.CameraUtils;
-
 public class SettingsActivity extends AppCompatActivity {
 
+    private static final int CAMERA_CAPTURE_IMAGE_PREVIEW = 3;
     private TextView textViewProfileName;
     private String DEFAULT = "NULL";
-
     private String mCurrentPhotoPath;
     private Button buttonTakeProfilePic;
     private ImageView imageProfile;
-    private static final int CAMERA_CAPTURE_IMAGE_PREVIEW = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +39,7 @@ public class SettingsActivity extends AppCompatActivity {
             PART A - Add profile name.
          */
 
-        textViewProfileName = (TextView)findViewById(R.id.textViewProfileName);
+        textViewProfileName = (TextView) findViewById(R.id.textViewProfileName);
 
         SharedPreferences sharedPreferences = getSharedPreferences("UserRegistrationData", MODE_PRIVATE);
         String name = sharedPreferences.getString("name", DEFAULT);
@@ -53,10 +50,10 @@ public class SettingsActivity extends AppCompatActivity {
             PART B - Add profile picture.
          */
 
-        buttonTakeProfilePic = (Button)findViewById(R.id.buttonTakeProfilePic);
+        buttonTakeProfilePic = (Button) findViewById(R.id.buttonTakeProfilePic);
         imageProfile = findViewById(R.id.imgProfile);
 
-        buttonTakeProfilePic.setOnClickListener((v)->{
+        buttonTakeProfilePic.setOnClickListener((v) -> {
             dispatchTakePictureIntent(CAMERA_CAPTURE_IMAGE_PREVIEW);
         });
     }

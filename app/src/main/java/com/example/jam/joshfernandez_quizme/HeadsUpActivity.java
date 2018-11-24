@@ -5,14 +5,10 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Build;
-import android.os.VibrationEffect;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HeadsUpActivity extends AppCompatActivity implements SensorEventListener {
@@ -44,7 +40,7 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
         */
 
         myAccelerometer = mySensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        textViewHeadsUpTerm = (TextView)findViewById(R.id.textViewHeadsUpTerm);
+        textViewHeadsUpTerm = (TextView) findViewById(R.id.textViewHeadsUpTerm);
     }
 
     @Override
@@ -75,14 +71,13 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
                 if (inclination < 30 || inclination > 130) {
                     // device is facing either up or down
 
-                    if( direction > 0 ) // facing up
+                    if (direction > 0) // facing up
                     {
                         setTerm = "INCORRECT";
                         textViewHeadsUpTerm.setText(setTerm);
                         textViewHeadsUpTerm.setTextColor(Color.WHITE);
                         textViewHeadsUpTerm.setBackgroundColor(Color.rgb(255, 0, 0));
-                    }
-                    else if( direction < 0 ) // facing down
+                    } else if (direction < 0) // facing down
                     {
                         setTerm = "CORRECT";
                         textViewHeadsUpTerm.setText(setTerm);

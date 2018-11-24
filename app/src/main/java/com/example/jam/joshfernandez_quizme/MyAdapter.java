@@ -1,18 +1,21 @@
 package com.example.jam.joshfernandez_quizme;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static com.example.jam.joshfernandez_quizme.DisplayFlashcardsActivity.*;
 import static com.example.jam.joshfernandez_quizme.R.layout.row;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
@@ -36,9 +39,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
-        String[]  results = (list.get(position).toString()).split(",");
-        holder.termTextView.setText(results[0]);
-        holder.definitionTextView.setText(results[1]);
+        String[] results = (list.get(position).toString()).split(",");
+        holder.termTextView.setText(results[0].trim()); // Removes leading and trailing whitespace
+        holder.definitionTextView.setText(results[1].trim()); // Removes leading and trailing whitespace
     }
 
     @Override
@@ -69,9 +72,27 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         @Override
         public void onClick(View view) {
             Toast.makeText(holderContext,
-                    "You have clicked " + ((TextView)view.findViewById(R.id.flashcardTermEntry)).getText().toString(),
+                    "Proceed to Update Flashcard Activity for " + ((TextView) view.findViewById(R.id.flashcardTermEntry)).getText().toString(),
                     Toast.LENGTH_SHORT).show();
+
+            // The biggest accomplishment of my life!
+            Intent intent = new Intent(holderContext, UpdateFlashcardActivity.class);
+            intent.putExtra("Term", termTextView.getText());
+            intent.putExtra("Definition", definitionTextView.getText());
+
+            int position = getAdapterPosition();
+            intent.putExtra("Position", position);
+
+            // This is also the biggest accomplishment of my life!
+            // However, I am aware that this is slightly dangerous code.
+            // Source: https://stackoverflow.com/questions/2848775/use-startactivityforresult-from-non-activity
+            if (holderContext instanceof Activity) {
+                ((Activity) holderContext).startActivityForResult(intent, REQUEST_UPDATE_FLASHCARD);
+            } else {
+                Log.e("MyAdapter", "holderContext should be an instanceof Activity.");
+            }
         }
+
     }
 
 }

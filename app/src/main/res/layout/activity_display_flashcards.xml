@@ -43,7 +43,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="#F50000"
-            android:textColor="#FFFFFF"
-            android:text="Delete This Flashcard Set" />
+            android:text="Delete This Flashcard Set (Not Implemented)"
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
