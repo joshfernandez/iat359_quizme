@@ -185,6 +185,9 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
     }
 
     public void updateRecyclerViewFlashcards() {
+        mArrayList.clear();
+        myAdapter.notifyDataSetChanged();
+
         Cursor cursor = db.getData();
 
         int index1 = cursor.getColumnIndex(Constants.TERM);
