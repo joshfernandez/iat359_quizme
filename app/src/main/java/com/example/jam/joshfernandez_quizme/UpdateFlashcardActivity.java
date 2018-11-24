@@ -8,9 +8,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import static com.example.jam.joshfernandez_quizme.DisplayFlashcardsActivity.DEFAULT_INTEGER;
+
 public class UpdateFlashcardActivity extends AppCompatActivity {
 
     String term, definition;
+    int position;
     private Button buttonUpdateFlashcard, buttonLookUp;
     private EditText editTextUpdateTerm, editTextUpdateDefinition;
 
@@ -28,6 +31,9 @@ public class UpdateFlashcardActivity extends AppCompatActivity {
 
         editTextUpdateTerm.setText(data.getStringExtra("Term"));
         editTextUpdateDefinition.setText(data.getStringExtra("Definition"));
+        position = data.getIntExtra("Position", DEFAULT_INTEGER);
+
+        Toast.makeText(this, "Position: " + position, Toast.LENGTH_LONG);
 
         buttonLookUp.setOnClickListener((v) -> {
             String term_given = editTextUpdateTerm.getText().toString();
@@ -47,11 +53,12 @@ public class UpdateFlashcardActivity extends AppCompatActivity {
             term.trim();
             definition.trim();
 
-            Toast.makeText(this, "Going back to Display Flashcards Activity with " + term + ": " + definition, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Going back to Display Flashcards Activity with " + term + " (Position) " + position + ": " + definition, Toast.LENGTH_SHORT).show();
 
             Intent i = getIntent(); // Getting the intent that has started this activity
             i.putExtra("Term Given", term);
             i.putExtra("Definition Given", definition);
+            i.putExtra("Position Given", position);
 
             editTextUpdateTerm.setText("");
             editTextUpdateDefinition.setText("");

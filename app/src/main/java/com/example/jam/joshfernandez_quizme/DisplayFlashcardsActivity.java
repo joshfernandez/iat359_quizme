@@ -20,6 +20,7 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
 
     static final int REQUEST_CREATE_FLASHCARD = 0; // This is the request code for requesting result from CreateFlashcard activity
     static final int REQUEST_UPDATE_FLASHCARD = 1; // This is the request code for requesting result from UpdateFlashcard activity
+    static final int DEFAULT_INTEGER = 0;
     ArrayList<String> mArrayList = new ArrayList<String>();
     private Button buttonCreateNewFlashcard, buttonDeleteFlashcardSet, buttonPlayHeadsUp;
     private String DEFAULT = "NULL";
@@ -122,7 +123,7 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CREATE_FLASHCARD || requestCode == REQUEST_UPDATE_FLASHCARD) //check that we're processing the response from CreateFlashcard
+        if (requestCode == REQUEST_CREATE_FLASHCARD) //check that we're processing the response from CreateFlashcard
         {
             if (resultCode == RESULT_OK) //make sure the request was successful
             {
@@ -139,13 +140,42 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
 
             }
         }
+        else if (requestCode == REQUEST_UPDATE_FLASHCARD) //check that we're processing the response from UpdateFlashcard
+        {
+            if (resultCode == RESULT_OK) //make sure the request was successful
+            {
+
+                if (data.hasExtra("Term Given"))
+                {
+                    Toast.makeText(this, "DisplayFlashcards Successful. Flashcard will be updated.", Toast.LENGTH_SHORT).show();
+                    String term_given = data.getExtras().getString("Term Given");
+                    String definition_given = data.getExtras().getString("Definition Given");
+                    int position_given = data.getExtras().getInt("Position Given", DEFAULT_INTEGER);
+
+                    updateFlashcard(term_given, definition_given, position_given);
+                    updateRecyclerViewFlashcards();
+                }
+
+            }
+        }
 
         super.onActivityResult(requestCode, resultCode, data);
     }
 
     public void addFlashcard(String term, String definition) {
-        Toast.makeText(this, term + ": " + definition, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Adding " + term + ": " + definition, Toast.LENGTH_SHORT).show();
         long id = db.insertData(term, definition);
+
+        if (id < 0) {
+            Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void updateFlashcard(String term, String definition, int position) {
+        Toast.makeText(this, "Updating " + term + ": " + definition + " at position " + position, Toast.LENGTH_SHORT).show();
+        long id = db.updateData(term, definition, position + 1);
 
         if (id < 0) {
             Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
