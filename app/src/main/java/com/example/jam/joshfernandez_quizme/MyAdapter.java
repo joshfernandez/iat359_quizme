@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import static android.app.Activity.RESULT_OK;
 import static com.example.jam.joshfernandez_quizme.DisplayFlashcardsActivity.*;
 import static com.example.jam.joshfernandez_quizme.R.layout.row;
 
@@ -41,8 +40,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
         String[] results = (list.get(position).toString()).split(",");
-        holder.termTextView.setText(results[0]);
-        holder.definitionTextView.setText(results[1]);
+        holder.termTextView.setText(results[0].trim()); // Removes leading and trailing whitespace
+        holder.definitionTextView.setText(results[1].trim()); // Removes leading and trailing whitespace
     }
 
     @Override

@@ -38,6 +38,11 @@ public class CreateFlashcardActivity extends AppCompatActivity {
 
             term = editTextFlashcardTerm.getText().toString();
             definition = editTextFlashcardDefinition.getText().toString();
+
+            // Removes leading and trailing whitespace
+            term.trim();
+            definition.trim();
+
             Toast.makeText(this, "Going back to Display Flashcards Activity with " + term + ": " + definition, Toast.LENGTH_SHORT).show();
 
             Intent i = getIntent(); // Getting the intent that has started this activity
