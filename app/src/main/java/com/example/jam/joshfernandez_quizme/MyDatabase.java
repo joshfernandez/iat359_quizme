@@ -36,6 +36,13 @@ public class MyDatabase {
         return id;
     }
 
+    public long deleteData(int position) {
+        db = helper.getWritableDatabase();
+
+        long id = db.delete(Constants.TABLE_NAME, "_id=" + position, null);
+        return id;
+    }
+
     public Cursor getData() {
         SQLiteDatabase db = helper.getWritableDatabase();
 

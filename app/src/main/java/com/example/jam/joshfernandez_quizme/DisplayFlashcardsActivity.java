@@ -155,6 +155,13 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
                     updateFlashcard(term_given, definition_given, position_given);
                     updateRecyclerViewFlashcards();
                 }
+                else if (data.hasExtra("Delete Flashcard"))
+                {
+                    Toast.makeText(this, "DisplayFlashcards Successful. Flashcard will be deleted.", Toast.LENGTH_SHORT).show();
+                    int position_given = data.getExtras().getInt("Position Given", DEFAULT_INTEGER);
+                    deleteFlashcard(position_given);
+                    updateRecyclerViewFlashcards();
+                }
 
             }
         }
@@ -176,6 +183,17 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
     public void updateFlashcard(String term, String definition, int position) {
         Toast.makeText(this, "Updating " + term + ": " + definition + " at position " + position, Toast.LENGTH_SHORT).show();
         long id = db.updateData(term, definition, position + 1);
+
+        if (id < 0) {
+            Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void deleteFlashcard(int position) {
+        Toast.makeText(this, "Deleting flashcard at position " + position, Toast.LENGTH_SHORT).show();
+        long id = db.deleteData(position + 1);
 
         if (id < 0) {
             Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();

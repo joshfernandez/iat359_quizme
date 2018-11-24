@@ -14,7 +14,7 @@ public class UpdateFlashcardActivity extends AppCompatActivity {
 
     String term, definition;
     int position;
-    private Button buttonUpdateFlashcard, buttonLookUp;
+    private Button buttonUpdateFlashcard, buttonDeleteFlashcard, buttonLookUp;
     private EditText editTextUpdateTerm, editTextUpdateDefinition;
 
     @Override
@@ -23,6 +23,7 @@ public class UpdateFlashcardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update_flashcard);
 
         buttonUpdateFlashcard = (Button) findViewById(R.id.buttonUpdateFlashcard);
+        buttonDeleteFlashcard = (Button) findViewById(R.id.buttonDeleteFlashcard);
         buttonLookUp = (Button) findViewById(R.id.buttonLookUp);
         editTextUpdateTerm = (EditText) findViewById(R.id.editTextUpdateTerm);
         editTextUpdateDefinition = (EditText) findViewById(R.id.editTextUpdateDefinition);
@@ -58,6 +59,22 @@ public class UpdateFlashcardActivity extends AppCompatActivity {
             Intent i = getIntent(); // Getting the intent that has started this activity
             i.putExtra("Term Given", term);
             i.putExtra("Definition Given", definition);
+            i.putExtra("Position Given", position);
+
+            editTextUpdateTerm.setText("");
+            editTextUpdateDefinition.setText("");
+
+            setResult(RESULT_OK, i);
+            finish();
+
+        });
+
+        buttonDeleteFlashcard.setOnClickListener((v) -> {
+
+            Toast.makeText(this, "Going back to Display Flashcards Activity with " + term + " (Position) " + position + ": " + definition, Toast.LENGTH_SHORT).show();
+
+            Intent i = getIntent(); // Getting the intent that has started this activity
+            i.putExtra("Delete Flashcard", "Delete Flashcard");
             i.putExtra("Position Given", position);
 
             editTextUpdateTerm.setText("");
