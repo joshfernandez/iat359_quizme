@@ -24,6 +24,7 @@ import java.util.Date;
 public class SettingsActivity extends AppCompatActivity {
 
     private static final int CAMERA_CAPTURE_IMAGE_PREVIEW = 3;
+    private static final String IMAGE_FILE = "IMAGE_FILE";
     private TextView textViewProfileName;
     private String DEFAULT = "NULL";
     private String mCurrentPhotoPath;
@@ -102,9 +103,11 @@ public class SettingsActivity extends AppCompatActivity {
      */
     private void previewCapturedImage() {
         try {
-
             imageProfile.setVisibility(View.VISIBLE);
+
+            Toast.makeText(this, mCurrentPhotoPath, Toast.LENGTH_LONG).show();
             Log.d("preview", mCurrentPhotoPath);
+
             final Bitmap bitmap = CameraUtils.scaleDownAndRotatePic(mCurrentPhotoPath);
             imageProfile.setImageBitmap(bitmap);
         } catch (NullPointerException e) {
@@ -126,5 +129,22 @@ public class SettingsActivity extends AppCompatActivity {
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = image.getAbsolutePath();
         return image;
+    }
+
+    // Save values of assgn, particip, project, quizzes, and examVal
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString(IMAGE_FILE, mCurrentPhotoPath);
+    }
+
+    // TO DO: Write code to retrieve the values using the onRestoreInstanceState() method
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        mCurrentPhotoPath = savedInstanceState.getString(IMAGE_FILE);
+        previewCapturedImage();
     }
 }
