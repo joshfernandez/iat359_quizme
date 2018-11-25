@@ -131,7 +131,7 @@ public class SettingsActivity extends AppCompatActivity {
         return image;
     }
 
-    // Save values of assgn, particip, project, quizzes, and examVal
+    // Save the image file location
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -139,7 +139,7 @@ public class SettingsActivity extends AppCompatActivity {
         outState.putString(IMAGE_FILE, mCurrentPhotoPath);
     }
 
-    // TO DO: Write code to retrieve the values using the onRestoreInstanceState() method
+    // Retrieve the image file location
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
