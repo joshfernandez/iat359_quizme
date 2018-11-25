@@ -4,28 +4,51 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:id="@+id/listLayout"
+        android:id="@+id/rowLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/listLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/flashcardTermEntry"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="start|top"
+                android:text="TextView"
+                android:textColor="#000000"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/flashcardDefinitionEntry"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="start|center_vertical"
+                android:text="TextView"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="6dp" />
 
         <TextView
-            android:id="@+id/flashcardTermEntry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="start"
-            android:text="TextView"
-            android:textSize="24sp"
-            android:ems="5"/>
+            android:id="@+id/textViewBorder"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#BDBDBD" />
 
-        <TextView
-            android:id="@+id/flashcardDefinitionEntry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="start"
-            android:text="TextView"
-            android:ems="15"/>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="6dp" />
+
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
