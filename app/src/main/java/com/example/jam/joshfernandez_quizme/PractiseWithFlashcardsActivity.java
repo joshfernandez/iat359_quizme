@@ -17,6 +17,9 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
     private Button buttonPrevious, buttonFlip, buttonNext;
     ArrayList<String> arrayListFlashcards = new ArrayList<String>();
 
+    private int current_position, set_size;
+    private String current_flashcard, current_term, current_definition;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,9 +34,20 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
         Intent data = getIntent();
         arrayListFlashcards = data.getStringArrayListExtra("Flashcard Set");
 
-        for(String flashcard : arrayListFlashcards)
-        {
-            Toast.makeText(this, flashcard, Toast.LENGTH_SHORT).show();
-        }
+        set_size = arrayListFlashcards.size();
+        String flashcard_position = Integer.toString(set_size);
+        textViewFlashcardPosition.setText(flashcard_position);
+
+        buttonPrevious.setOnClickListener((v) -> {
+
+        });
+
+        buttonNext.setOnClickListener((v) -> {
+
+        });
+
+        buttonFlip.setOnClickListener((v) -> {
+
+        });
     }
 }
