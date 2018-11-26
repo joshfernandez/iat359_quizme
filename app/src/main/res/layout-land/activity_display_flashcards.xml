@@ -16,8 +16,7 @@
             android:id="@+id/recyclerViewFlashcards"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
-            android:padding="6dp"
+            android:layout_weight="4"
             android:scrollbars="vertical"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
 
@@ -30,27 +29,34 @@
             android:textColor="#FFFFFF"
             android:text="Create New Flashcard" />
 
-        <Button
-            android:id="@+id/buttonPractise"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Practise with Flashcards" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/buttonPlayHeadsUp"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="Heads Up Game (Trial)" />
+            <Button
+                android:id="@+id/buttonPractise"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Practise with Flashcards" />
 
-        <Button
-            android:id="@+id/buttonDeleteFlashcardSet"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="#F50000"
-            android:text="Delete This Flashcard Set (Not Implemented)"
-            android:textColor="#FFFFFF" />
+            <Button
+                android:id="@+id/buttonPlayHeadsUp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Heads Up Game (Trial)" />
+
+            <Button
+                android:id="@+id/buttonDeleteFlashcardSet"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#F50000"
+                android:text="Delete This Flashcard Set (Not Implemented)"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
