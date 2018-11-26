@@ -25,6 +25,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private static final int CAMERA_CAPTURE_IMAGE_PREVIEW = 3;
     private static final String IMAGE_FILE = "IMAGE_FILE";
+    public SharedPreferences sharedPreferences;
     private TextView textViewProfileName;
     private String DEFAULT = "NULL";
     private String mCurrentPhotoPath;
@@ -37,22 +38,38 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         /*
-            PART A - Add profile name.
+            PART A - Introduce UI elements and shared preferences.
          */
 
         textViewProfileName = (TextView) findViewById(R.id.textViewProfileName);
+        buttonTakeProfilePic = (Button) findViewById(R.id.buttonTakeProfilePic);
+        imageProfile = findViewById(R.id.imgProfile);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("UserRegistrationData", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("UserRegistrationData", MODE_PRIVATE);
         String name = sharedPreferences.getString("name", DEFAULT);
+        String savedPhotoPath = sharedPreferences.getString("photoPath", DEFAULT);
+
+
+        /*
+            PART B - Add profile name.
+         */
 
         textViewProfileName.setText("Hello, " + name + "!");
 
+
         /*
-            PART B - Add profile picture.
+            PART C - Add profile picture if it is already made.
          */
 
-        buttonTakeProfilePic = (Button) findViewById(R.id.buttonTakeProfilePic);
-        imageProfile = findViewById(R.id.imgProfile);
+        if (!savedPhotoPath.equals(DEFAULT)) {
+            Toast.makeText(this, "Photo path was saved to SharedPreferences. It will be displayed now.", Toast.LENGTH_SHORT).show();
+            mCurrentPhotoPath = savedPhotoPath;
+            previewCapturedImage();
+        }
+
+        /*
+            PART D - Add the profile picture functionality.
+         */
 
         buttonTakeProfilePic.setOnClickListener((v) -> {
             dispatchTakePictureIntent(CAMERA_CAPTURE_IMAGE_PREVIEW);
@@ -128,6 +145,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = image.getAbsolutePath();
+        savePhotoPathToSharedPrefs();
         return image;
     }
 
@@ -147,4 +165,13 @@ public class SettingsActivity extends AppCompatActivity {
         mCurrentPhotoPath = savedInstanceState.getString(IMAGE_FILE);
         previewCapturedImage();
     }
+
+    private void savePhotoPathToSharedPrefs() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("photoPath", mCurrentPhotoPath);
+        editor.commit();
+
+        Toast.makeText(this, "Photo path is saved to SharedPreferences", Toast.LENGTH_SHORT).show();
+    }
+
 }
