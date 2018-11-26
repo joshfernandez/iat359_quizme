@@ -1,6 +1,7 @@
 package com.example.jam.joshfernandez_quizme;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -119,10 +120,14 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
 
     public void showCurrentTerm(String term) {
         textViewPractiseMain.setText(term);
+        textViewPractiseMain.setTextSize(60);
+        textViewPractiseMain.setTypeface(Typeface.DEFAULT_BOLD);
     }
 
     public void showCurrentDefinition(String definition) {
         textViewPractiseMain.setText(definition);
+        textViewPractiseMain.setTextSize(36);
+        textViewPractiseMain.setTypeface(Typeface.DEFAULT);
     }
 
     public void setCurrentPosition(int flashcard_position) {
