@@ -53,16 +53,11 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
         set_size = arrayListFlashcards.size();
         current_position = 0;
 
-        String flashcard_position = Integer.toString(current_position + 1) + " / " + Integer.toString(set_size);
-        textViewFlashcardPosition.setText(flashcard_position);
+        setCurrentPosition(current_position);
+        getNewFlashcard(current_position);
+        showCurrentTerm(current_term);
 
-        current_flashcard = arrayListFlashcards.get(current_position).split(",");
-        current_term = current_flashcard[0].trim();
-        current_definition = current_flashcard[1].trim();
 
-        textViewPractiseMain.setText(current_term);
-
-        
         /*
             PART D - Set button onClickListeners.
         */
@@ -79,4 +74,24 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
 
         });
     }
+
+    public void getNewFlashcard(int flashcard_position) {
+        current_flashcard = arrayListFlashcards.get(flashcard_position).split(",");
+        current_term = current_flashcard[0].trim();
+        current_definition = current_flashcard[1].trim();
+    }
+
+    public void showCurrentTerm(String term) {
+        textViewPractiseMain.setText(term);
+    }
+
+    public void showCurrentDefinition(String definition) {
+        textViewPractiseMain.setText(definition);
+    }
+
+    public void setCurrentPosition(int flashcard_position) {
+        String view_position = Integer.toString(current_position + 1) + " / " + Integer.toString(set_size);
+        textViewFlashcardPosition.setText(view_position);
+    }
+
 }
