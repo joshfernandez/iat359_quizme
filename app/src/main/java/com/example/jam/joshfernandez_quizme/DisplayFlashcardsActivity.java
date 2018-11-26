@@ -58,6 +58,7 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
         buttonPractise.setOnClickListener((v) -> {
             Toast.makeText(this, "Proceed to Practise With Flashcards Activity", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(DisplayFlashcardsActivity.this, PractiseWithFlashcardsActivity.class);
+            intent.putExtra("Flashcard Set", arrayListFlashcards);
             startActivity(intent);
         });
 
