@@ -99,6 +99,18 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
             switchTermAndDefinition();
             showPracticeView();
         });
+
+
+        /*
+            PART E - Set textView onClickListener.
+        */
+
+        textViewPractiseMain.setOnClickListener((v) -> {
+            switchTermAndDefinition();
+            showPracticeView();
+        });
+
+
     }
 
     public void getNewFlashcard(int flashcard_position) {
