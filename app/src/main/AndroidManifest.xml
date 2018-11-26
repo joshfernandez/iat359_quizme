@@ -56,7 +56,7 @@
         <activity
             android:name=".UpdateFlashcardActivity"
             android:label="Update Flashcard" />
-        <activity android:name=".PractiseWithFlashcardsActivity"></activity>
+        <activity android:name=".PractiseWithFlashcardsActivity" android:label="Flashcard Practice"></activity>
     </application>
 
 </manifest>
