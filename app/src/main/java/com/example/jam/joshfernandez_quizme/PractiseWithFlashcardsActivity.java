@@ -18,12 +18,18 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
     ArrayList<String> arrayListFlashcards = new ArrayList<String>();
 
     private int current_position, set_size;
-    private String current_flashcard, current_term, current_definition;
+    private String[] current_flashcard;
+    private String current_term, current_definition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_practise_with_flashcards);
+
+
+        /*
+            PART A - Initialize UI elements.
+        */
 
         textViewFlashcardPosition = (TextView) findViewById(R.id.textViewFlashcardPosition);
         textViewPractiseMain = (TextView) findViewById(R.id.textViewPractiseMain);
@@ -31,12 +37,35 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
         buttonFlip = (Button) findViewById(R.id.buttonFlip);
         buttonNext = (Button) findViewById(R.id.buttonNext);
 
+
+        /*
+            PART B - Retrieve flashcard set.
+        */
+
         Intent data = getIntent();
         arrayListFlashcards = data.getStringArrayListExtra("Flashcard Set");
 
+
+        /*
+            PART C - Initialize the first flashcard on screen.
+        */
+
         set_size = arrayListFlashcards.size();
-        String flashcard_position = Integer.toString(set_size);
+        current_position = 0;
+
+        String flashcard_position = Integer.toString(current_position + 1) + " / " + Integer.toString(set_size);
         textViewFlashcardPosition.setText(flashcard_position);
+
+        current_flashcard = arrayListFlashcards.get(current_position).split(",");
+        current_term = current_flashcard[0].trim();
+        current_definition = current_flashcard[1].trim();
+
+        textViewPractiseMain.setText(current_term);
+
+        
+        /*
+            PART D - Set button onClickListeners.
+        */
 
         buttonPrevious.setOnClickListener((v) -> {
 
