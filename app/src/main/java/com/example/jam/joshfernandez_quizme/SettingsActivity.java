@@ -62,7 +62,6 @@ public class SettingsActivity extends AppCompatActivity {
          */
 
         if (!savedPhotoPath.equals(DEFAULT)) {
-            Toast.makeText(this, "Photo path was saved to SharedPreferences. It will be displayed now.", Toast.LENGTH_SHORT).show();
             mCurrentPhotoPath = savedPhotoPath;
             previewCapturedImage();
         }
@@ -121,10 +120,7 @@ public class SettingsActivity extends AppCompatActivity {
     private void previewCapturedImage() {
         try {
             imageProfile.setVisibility(View.VISIBLE);
-
-            Toast.makeText(this, mCurrentPhotoPath, Toast.LENGTH_LONG).show();
             Log.d("preview", mCurrentPhotoPath);
-
             final Bitmap bitmap = CameraUtils.scaleDownAndRotatePic(mCurrentPhotoPath);
             imageProfile.setImageBitmap(bitmap);
         } catch (NullPointerException e) {
@@ -170,8 +166,6 @@ public class SettingsActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("photoPath", mCurrentPhotoPath);
         editor.commit();
-
-        Toast.makeText(this, "Photo path is saved to SharedPreferences", Toast.LENGTH_SHORT).show();
     }
 
 }
