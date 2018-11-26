@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <!--Icon from: https://www.flaticon.com/free-icon/creativity_349382#term=education&page=1&position=49-->
+    <!-- Icon from: https://www.flaticon.com/free-icon/creativity_349382#term=education&page=1&position=49 -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/quizme_icon"
@@ -17,6 +17,17 @@
         android:roundIcon="@mipmap/quizme_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
         <activity
             android:name=".RegisterActivity"
             android:label="Sign Up as a new QuizMe user">
@@ -44,17 +55,8 @@
             android:label="Heads Up Game" />
         <activity
             android:name=".UpdateFlashcardActivity"
-            android:label="Update Flashcard"></activity>
-
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.example.android.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
+            android:label="Update Flashcard" />
+        <activity android:name=".PractiseWithFlashcardsActivity"></activity>
     </application>
 
 </manifest>
