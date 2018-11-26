@@ -21,7 +21,7 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
     static final int REQUEST_CREATE_FLASHCARD = 0; // This is the request code for requesting result from CreateFlashcard activity
     static final int REQUEST_UPDATE_FLASHCARD = 1; // This is the request code for requesting result from UpdateFlashcard activity
     ArrayList<String> arrayListFlashcards = new ArrayList<String>();
-    private Button buttonCreateNewFlashcard, buttonDeleteFlashcardSet, buttonPlayHeadsUp;
+    private Button buttonCreateNewFlashcard, buttonDeleteFlashcardSet, buttonPlayHeadsUp, buttonPractise;
     private String DEFAULT = "NULL";
     private RecyclerView recyclerViewFlashcards;
     private RecyclerView.LayoutManager myLayoutManager;
@@ -41,6 +41,7 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
         buttonCreateNewFlashcard = (Button) findViewById(R.id.buttonCreateNewFlashcard);
         buttonDeleteFlashcardSet = (Button) findViewById(R.id.buttonDeleteFlashcardSet);
         buttonPlayHeadsUp = (Button) findViewById(R.id.buttonPlayHeadsUp);
+        buttonPractise = (Button) findViewById(R.id.buttonPractise);
 
         buttonCreateNewFlashcard.setOnClickListener((v) -> {
             Toast.makeText(this, "Proceed to Create Flashcard Activity", Toast.LENGTH_SHORT).show();
@@ -51,6 +52,13 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
         buttonPlayHeadsUp.setOnClickListener((v) -> {
             Toast.makeText(this, "Proceed to Heads Up Activity", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(DisplayFlashcardsActivity.this, HeadsUpActivity.class);
+            startActivity(intent);
+        });
+
+        buttonPractise.setOnClickListener((v) -> {
+            Toast.makeText(this, "Proceed to Practise With Flashcards Activity", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(DisplayFlashcardsActivity.this, PractiseWithFlashcardsActivity.class);
+            intent.putExtra("Flashcard Set", arrayListFlashcards);
             startActivity(intent);
         });
 
