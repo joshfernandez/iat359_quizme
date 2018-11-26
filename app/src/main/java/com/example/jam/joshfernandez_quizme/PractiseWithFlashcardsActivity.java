@@ -63,11 +63,31 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
         */
 
         buttonPrevious.setOnClickListener((v) -> {
-
+            if(current_position - 1 >= 0)
+            {
+                current_position--;
+            }
+            else
+            {
+                current_position = set_size - 1;
+            }
+            setCurrentPosition(current_position);
+            getNewFlashcard(current_position);
+            showCurrentTerm(current_term);
         });
 
         buttonNext.setOnClickListener((v) -> {
-
+            if(current_position + 1 < set_size)
+            {
+                current_position++;
+            }
+            else
+            {
+                current_position = 0;
+            }
+            setCurrentPosition(current_position);
+            getNewFlashcard(current_position);
+            showCurrentTerm(current_term);
         });
 
         buttonFlip.setOnClickListener((v) -> {
