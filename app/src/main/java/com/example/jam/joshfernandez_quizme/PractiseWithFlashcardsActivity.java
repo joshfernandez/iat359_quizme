@@ -12,15 +12,15 @@ import java.util.ArrayList;
 
 public class PractiseWithFlashcardsActivity extends AppCompatActivity {
 
-    ArrayList<String> arrayListFlashcards = new ArrayList<String>();
-    private ArrayList<String> arrayListCurrent = new ArrayList<String>();
-    private String seeFirst = "Term";
+    ArrayList<String> arrayListFlashcards = new ArrayList<String>(); // The array of flashcards transmitted from DisplayFlashcardsActivity
+    private ArrayList<String> arrayListCurrent = new ArrayList<String>(); // The current array being presented; used for shuffling
+    private String seeFirst = "Term"; // The default practice view
     private TextView textViewFlashcardPosition, textViewPractiseMain;
     private Button buttonPrevious, buttonFlip, buttonNext, buttonShuffle, buttonSeeFirst;
     private int current_position, set_size;
     private String[] current_flashcard;
     private String current_term, current_definition;
-    private boolean is_definition;
+    private boolean is_definition; // Used to indicate whether the user wants to see the term or definition
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +48,12 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
         Intent data = getIntent();
         arrayListFlashcards = data.getStringArrayListExtra("Flashcard Set");
 
+        arrayListCurrent = arrayListFlashcards; // Make the array of flashcards the array to be presented
+
 
         /*
             PART C - Initialize the first flashcard on screen.
         */
-
-        arrayListCurrent = arrayListFlashcards;
 
         set_size = arrayListCurrent.size();
         current_position = 0;
@@ -69,6 +69,11 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
         */
 
         buttonPrevious.setOnClickListener((v) -> {
+            /*
+                If the view can get a flashcard before the current one, retrieve it.
+                If it cannot, it means it reached the start of the flashcard set
+                and can return back to the end of the list.
+             */
             if (current_position - 1 >= 0) {
                 current_position--;
             } else {
@@ -82,6 +87,11 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
         });
 
         buttonNext.setOnClickListener((v) -> {
+            /*
+                If the view can get a flashcard after the current one, retrieve it.
+                If it cannot, it means it reached the end of the flashcard set
+                and can return back to the start of the list.
+             */
             if (current_position + 1 < set_size) {
                 current_position++;
             } else {
@@ -94,11 +104,14 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
             showPracticeView();
         });
 
+        // Flip the view to either term or definition and show it on screen.
         buttonFlip.setOnClickListener((v) -> {
             switchTermAndDefinition();
             showPracticeView();
         });
 
+        // Shuffle the list of flashcards, return back to the starting position,
+        // and show the first flashcard on screen.
         buttonShuffle.setOnClickListener((v) -> {
             arrayListCurrent = shuffleArray(arrayListFlashcards);
             current_position = 0;
@@ -110,18 +123,27 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
         });
 
         buttonSeeFirst.setOnClickListener((v) -> {
-            if (seeFirst.equals("Term")) {
+            if (seeFirst.equals("Term")) { // If the layout is term-first, change it to definition-first
+
                 Toast.makeText(this, "Switching from Term-First to Definition-First", Toast.LENGTH_SHORT).show();
+
                 seeFirst = "Definition";
+                is_definition = true; // The default should be the definition.
+
                 String changeSeeFirst = "See Term First";
                 buttonSeeFirst.setText(changeSeeFirst);
-                is_definition = true; // The default should be the definition.
-            } else if (seeFirst.equals("Definition")) {
-                Toast.makeText(this, "Changing from Definition-First to Term-First", Toast.LENGTH_SHORT).show();
+
+
+            } else if (seeFirst.equals("Definition")) { // If the layout is definition-first, change it to term-first
+
+                Toast.makeText(this, "Switching from Definition-First to Term-First", Toast.LENGTH_SHORT).show();
+
                 seeFirst = "Term";
+                is_definition = false; // The default should be the term.
+
                 String changeSeeFirst = "See Definition First";
                 buttonSeeFirst.setText(changeSeeFirst);
-                is_definition = false; // The default should be the term.
+
             }
             showPracticeView();
         });
