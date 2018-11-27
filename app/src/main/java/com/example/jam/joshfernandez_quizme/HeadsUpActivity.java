@@ -181,7 +181,6 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
     }
 
     public void showHeadsUpView() {
-        Toast.makeText(this, current_term, Toast.LENGTH_SHORT).show();
         textViewHeadsUpTerm.setText(current_term);
     }
 
