@@ -2,9 +2,8 @@ package com.example.jam.joshfernandez_quizme;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,17 +12,15 @@ import java.util.ArrayList;
 
 public class PractiseWithFlashcardsActivity extends AppCompatActivity {
 
+    ArrayList<String> arrayListFlashcards = new ArrayList<String>();
+    private ArrayList<String> arrayListCurrent = new ArrayList<String>();
+    private String seeFirst = "Term";
     private TextView textViewFlashcardPosition, textViewPractiseMain;
     private Button buttonPrevious, buttonFlip, buttonNext, buttonShuffle, buttonSeeFirst;
-    ArrayList<String> arrayListFlashcards = new ArrayList<String>();
-    ArrayList<String> arrayListCurrent = new ArrayList<String>();
-
     private int current_position, set_size;
     private String[] current_flashcard;
     private String current_term, current_definition;
-
     private boolean is_definition;
-    String seeFirst = "Term";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,14 +69,12 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
         */
 
         buttonPrevious.setOnClickListener((v) -> {
-            if(current_position - 1 >= 0)
-            {
+            if (current_position - 1 >= 0) {
                 current_position--;
-            }
-            else
-            {
+            } else {
                 current_position = set_size - 1;
             }
+
             setCurrentPosition(current_position);
             getNewFlashcard(current_position);
             switchBackToDefault();
@@ -87,14 +82,12 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
         });
 
         buttonNext.setOnClickListener((v) -> {
-            if(current_position + 1 < set_size)
-            {
+            if (current_position + 1 < set_size) {
                 current_position++;
-            }
-            else
-            {
+            } else {
                 current_position = 0;
             }
+
             setCurrentPosition(current_position);
             getNewFlashcard(current_position);
             switchBackToDefault();
@@ -117,7 +110,7 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
         });
 
         buttonSeeFirst.setOnClickListener((v) -> {
-            if(seeFirst.equals("Term")) {
+            if (seeFirst.equals("Term")) {
                 Toast.makeText(this, "Switching from Term-First to Definition-First", Toast.LENGTH_SHORT).show();
                 seeFirst = "Definition";
                 String changeSeeFirst = "See Term First";
@@ -153,12 +146,9 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
     }
 
     public void showPracticeView() {
-        if(is_definition)
-        {
+        if (is_definition) {
             showCurrentDefinition(current_definition);
-        }
-        else
-        {
+        } else {
             showCurrentTerm(current_term);
         }
     }
@@ -181,18 +171,15 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
     }
 
     public void switchTermAndDefinition() {
-        if(is_definition)
-        {
+        if (is_definition) {
             is_definition = false; // Switch definition back as a term.
-        }
-        else
-        {
+        } else {
             is_definition = true; // Switch term as a definition.
         }
     }
 
     public void switchBackToDefault() {
-        if(seeFirst.equals("Term")) {
+        if (seeFirst.equals("Term")) {
             is_definition = false; // Switch the text view back as a term.
         } else if (seeFirst.equals("Definition")) {
             is_definition = true; // Switch the text view back as a definition.
@@ -209,8 +196,7 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
         while (0 != currentIndex) {
 
             // Pick a remaining element...
-            double draftRandomIndex = Math.floor(Math.random() * currentIndex);
-            randomIndex = (int) draftRandomIndex ;
+            randomIndex = (int) Math.floor(Math.random() * currentIndex);
             currentIndex -= 1;
 
             // And swap it with the current element.
