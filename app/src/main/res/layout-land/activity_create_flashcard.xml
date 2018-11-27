@@ -11,30 +11,32 @@
         android:orientation="vertical"
         android:padding="12dp">
 
-        <TextView
-            android:id="@+id/textViewFlashcardTerm"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
-            android:text="Term:" />
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/editTextFlashcardTerm"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/textViewFlashcardTerm"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="Term:" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+            <EditText
+                android:id="@+id/editTextFlashcardTerm"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
@@ -49,6 +51,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
+                android:background="#E0E0E0"
                 android:text="Look Up In The Dictionary" />
         </LinearLayout>
 
@@ -56,7 +59,7 @@
             android:id="@+id/editTextFlashcardDefinition"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5"
+            android:layout_weight="3"
             android:ems="10"
             android:gravity="left|top"
             android:inputType="textMultiLine" />
@@ -65,7 +68,7 @@
             android:id="@+id/buttonAddNewFlashcard"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="1"
             android:background="#FFC000"
             android:text="Add New Flashcard"
             android:textColor="#FFFFFF" />
