@@ -9,8 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="12dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="12dp">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewFlashcards"
@@ -18,7 +18,7 @@
             android:layout_height="0dp"
             android:layout_weight="4"
             android:scrollbars="vertical"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
         <Button
             android:id="@+id/buttonCreateNewFlashcard"
@@ -26,8 +26,8 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="#FFC000"
-            android:textColor="#FFFFFF"
-            android:text="Create New Flashcard" />
+            android:text="Create New Flashcard"
+            android:textColor="#FFFFFF" />
 
         <LinearLayout
             android:layout_width="match_parent"
