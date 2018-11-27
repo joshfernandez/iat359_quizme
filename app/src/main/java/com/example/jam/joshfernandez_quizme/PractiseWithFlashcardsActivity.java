@@ -145,12 +145,12 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
                 buttonSeeFirst.setText(changeSeeFirst);
 
             }
-            showPracticeView();
+            showPracticeView(); // Set the flashcard view for the current flashcard already.
         });
 
 
         /*
-            PART E - Set textView onClickListener.
+            PART E - Set textView onClickListener to switch between term and definition mode.
         */
 
         textViewPractiseMain.setOnClickListener((v) -> {
@@ -161,6 +161,11 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
 
     }
 
+    /*
+        HELPER FUNCTIONS
+    */
+
+    // Retrieves a new flashcard string and parses its term and definition
     public void getNewFlashcard(int flashcard_position) {
         current_flashcard = arrayListCurrent.get(flashcard_position).split(",");
         current_term = current_flashcard[0].trim();
@@ -187,6 +192,7 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
         textViewPractiseMain.setTypeface(Typeface.DEFAULT);
     }
 
+    // In the format "Current Position / Total Number of Flashcards"
     public void setCurrentPosition(int flashcard_position) {
         String view_position = Integer.toString(current_position + 1) + " / " + Integer.toString(set_size);
         textViewFlashcardPosition.setText(view_position);
@@ -211,8 +217,8 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
     // Source: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
     public ArrayList<String> shuffleArray(ArrayList<String> arrList) {
         int currentIndex = arrList.size();
-        String temporaryValue;
-        int randomIndex;
+        String temporaryValue = "";
+        int randomIndex = 0;
 
         // While there remain elements to shuffle...
         while (0 != currentIndex) {
