@@ -21,7 +21,7 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
     static final int REQUEST_CREATE_FLASHCARD = 0; // This is the request code for requesting result from CreateFlashcard activity
     static final int REQUEST_UPDATE_FLASHCARD = 1; // This is the request code for requesting result from UpdateFlashcard activity
     ArrayList<String> arrayListFlashcards = new ArrayList<String>();
-    private Button buttonCreateNewFlashcard, buttonDeleteFlashcardSet, buttonPlayHeadsUp, buttonPractise;
+    private Button buttonCreateNewFlashcard, buttonPlayHeadsUp, buttonPractise;
     private String DEFAULT = "NULL";
     private RecyclerView recyclerViewFlashcards;
     private RecyclerView.LayoutManager myLayoutManager;
@@ -39,7 +39,6 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
          */
 
         buttonCreateNewFlashcard = (Button) findViewById(R.id.buttonCreateNewFlashcard);
-        buttonDeleteFlashcardSet = (Button) findViewById(R.id.buttonDeleteFlashcardSet);
         buttonPlayHeadsUp = (Button) findViewById(R.id.buttonPlayHeadsUp);
         buttonPractise = (Button) findViewById(R.id.buttonPractise);
 
@@ -50,40 +49,26 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
         });
 
         buttonPlayHeadsUp.setOnClickListener((v) -> {
-            if(arrayListFlashcards.size() > 0) { // We can only proceed to play Heads Up! if there are flashcards in the set.
+            if (arrayListFlashcards.size() > 0) { // We can only proceed to play Heads Up! if there are flashcards in the set.
                 Toast.makeText(this, "Proceed to Heads Up Activity", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(DisplayFlashcardsActivity.this, HeadsUpActivity.class);
                 intent.putExtra("Flashcard Set", arrayListFlashcards);
                 startActivity(intent);
-            }
-            else {
+            } else {
                 Toast.makeText(this, "Sorry! We cannot play Heads Up! on an empty flashcard set.", Toast.LENGTH_LONG).show();
             }
 
         });
 
         buttonPractise.setOnClickListener((v) -> {
-            if(arrayListFlashcards.size() > 0) { // We can only proceed to practise if there are flashcards in the set.
+            if (arrayListFlashcards.size() > 0) { // We can only proceed to practise if there are flashcards in the set.
                 Toast.makeText(this, "Proceed to Practise With Flashcards Activity", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(DisplayFlashcardsActivity.this, PractiseWithFlashcardsActivity.class);
                 intent.putExtra("Flashcard Set", arrayListFlashcards);
                 startActivity(intent);
-            }
-            else {
+            } else {
                 Toast.makeText(this, "Sorry! We cannot practise on an empty flashcard set.", Toast.LENGTH_LONG).show();
             }
-        });
-
-        buttonDeleteFlashcardSet.setOnClickListener((v) -> {
-
-            /*
-                1. Show a window to confirm that the user wants to delete the set.
-                2. If they hit OK, delete the set and go back to main menu.
-             */
-
-            Toast.makeText(this, "Going back to Main Menu Activity", Toast.LENGTH_SHORT).show();
-            //Intent intent = new Intent(MainMenuActivity.this, SettingsActivity.class);
-            //startActivity(intent);
         });
 
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,33 +8,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="12dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textViewUpdateTerm"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:text="Term:" />
-
-        <EditText
-            android:id="@+id/editTextUpdateTerm"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:ems="10"
-            android:inputType="textPersonName" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+        android:orientation="vertical"
+        android:padding="12dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewUpdateTerm"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Term:" />
+
+            <EditText
+                android:id="@+id/editTextUpdateTerm"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
@@ -50,14 +52,16 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:text="Look Up In The Dictionary" />
+                android:background="#094074"
+                android:text="Look Up In The Dictionary"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
         <EditText
             android:id="@+id/editTextUpdateDefinition"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5"
+            android:layout_weight="3"
             android:ems="10"
             android:gravity="left|top"
             android:inputType="textMultiLine" />
@@ -65,7 +69,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <Button
@@ -73,8 +77,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#F50000"
-                android:textColor="#FFFFFF"
+                android:background="#E0E0E0"
                 android:text="Delete This Flashcard" />
 
             <Button
@@ -83,8 +86,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:background="#FFC000"
-                android:textColor="#FFFFFF"
-                android:text="Update This Flashcard" />
+                android:text="Update This Flashcard"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
     </LinearLayout>

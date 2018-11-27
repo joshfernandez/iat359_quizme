@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -23,6 +22,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="#E0E0E0"
                 android:text="See Definition First" />
 
             <TextView
@@ -41,6 +41,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="#E0E0E0"
                 android:text="Shuffle" />
         </LinearLayout>
 
@@ -66,25 +67,27 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#FFC000"
-                android:textColor="#FFFFFF"
-                android:text="← Previous" />
+                android:background="#212121"
+                android:text="← Previous"
+                android:textColor="#FFFFFF" />
 
             <Button
                 android:id="@+id/buttonFlip"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Flip" />
+                android:background="#FFC000"
+                android:text="Flip"
+                android:textColor="#FFFFFF" />
 
             <Button
                 android:id="@+id/buttonNext"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#FFC000"
-                android:textColor="#FFFFFF"
-                android:text="Next →" />
+                android:background="#212121"
+                android:text="Next →"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

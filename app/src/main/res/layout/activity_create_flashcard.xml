@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,21 +8,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="12dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="12dp">
 
         <TextView
             android:id="@+id/textViewFlashcardTerm"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:text="Term:" />
 
         <EditText
             android:id="@+id/editTextFlashcardTerm"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:ems="10"
             android:inputType="textPersonName" />
 
@@ -35,7 +34,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:orientation="horizontal">
 
             <TextView
@@ -49,16 +48,18 @@
                 android:id="@+id/buttonLookUp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
                 android:layout_gravity="top|center"
-                android:text="Look Up In The Dictionary" />
+                android:layout_weight="2"
+                android:background="#094074"
+                android:text="Look Up In The Dictionary"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
         <EditText
             android:id="@+id/editTextFlashcardDefinition"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="15"
+            android:layout_weight="12"
             android:ems="10"
             android:gravity="left|top"
             android:inputType="textMultiLine" />
@@ -67,10 +68,10 @@
             android:id="@+id/buttonAddNewFlashcard"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:background="#FFC000"
-            android:textColor="#FFFFFF"
-            android:text="Add New Flashcard" />
+            android:text="Add New Flashcard"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
