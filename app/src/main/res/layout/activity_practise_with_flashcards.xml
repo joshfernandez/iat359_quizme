@@ -19,7 +19,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/buttonSeeFirst"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -37,7 +37,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/buttonShuffle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
