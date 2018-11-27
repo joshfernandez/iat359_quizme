@@ -16,18 +16,10 @@
             android:id="@+id/recyclerViewFlashcards"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="4"
+            android:layout_weight="5"
+            android:padding="0dp"
             android:scrollbars="vertical"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
-
-        <Button
-            android:id="@+id/buttonCreateNewFlashcard"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="#FFC000"
-            android:text="Create New Flashcard"
-            android:textColor="#FFFFFF" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,10 +28,20 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/buttonCreateNewFlashcard"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="#FFC000"
+                android:text="Create New Flashcard"
+                android:textColor="#FFFFFF" />
+
+            <Button
                 android:id="@+id/buttonPractise"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="#E0E0E0"
                 android:text="Practise with Flashcards" />
 
             <Button
@@ -47,16 +49,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Heads Up Game (Trial)" />
-
-            <Button
-                android:id="@+id/buttonDeleteFlashcardSet"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#F50000"
-                android:text="Delete This Flashcard Set (Not Implemented)"
+                android:background="#094074"
+                android:text="Play Heads Up!"
                 android:textColor="#FFFFFF" />
+
         </LinearLayout>
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
