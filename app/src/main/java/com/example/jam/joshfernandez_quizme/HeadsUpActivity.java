@@ -54,13 +54,13 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
 
 
         /*
-            PART C - Retrieve flashcard set.
+            PART C - Retrieve flashcard set and shuffle it.
         */
 
         Intent data = getIntent();
         arrayListFlashcards = data.getStringArrayListExtra("Flashcard Set");
 
-        arrayListCurrent = arrayListFlashcards; // Make the array of flashcards the array to be presented
+        arrayListCurrent = shuffleArray(arrayListFlashcards);
 
 
         /*
@@ -189,5 +189,27 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
 
     public void lockCurrentTerm() {
         viewNextTerm = false;
+    }
+
+    // Source: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+    public ArrayList<String> shuffleArray(ArrayList<String> arrList) {
+        int currentIndex = arrList.size();
+        String temporaryValue = "";
+        int randomIndex = 0;
+
+        // While there remain elements to shuffle...
+        while (0 != currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = (int) Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = arrList.get(currentIndex);
+            arrList.set(currentIndex, arrList.get(randomIndex));
+            arrList.set(randomIndex, temporaryValue);
+        }
+
+        return arrList;
     }
 }
