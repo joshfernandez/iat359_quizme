@@ -9,8 +9,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class PractiseWithFlashcardsActivity extends AppCompatActivity {
@@ -23,7 +21,9 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
     private int current_position, set_size;
     private String[] current_flashcard;
     private String current_term, current_definition;
+
     private boolean is_definition;
+    String seeFirst = "Term";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +82,7 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
             }
             setCurrentPosition(current_position);
             getNewFlashcard(current_position);
-            switchBackToTerm();
+            switchBackToDefault();
             showPracticeView();
         });
 
@@ -97,7 +97,7 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
             }
             setCurrentPosition(current_position);
             getNewFlashcard(current_position);
-            switchBackToTerm();
+            switchBackToDefault();
             showPracticeView();
         });
 
@@ -110,9 +110,26 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
             arrayListCurrent = shuffleArray(arrayListFlashcards);
             current_position = 0;
 
-            switchBackToTerm();
+            switchBackToDefault();
             setCurrentPosition(current_position);
             getNewFlashcard(current_position);
+            showPracticeView();
+        });
+
+        buttonSeeFirst.setOnClickListener((v) -> {
+            if(seeFirst.equals("Term")) {
+                Toast.makeText(this, "Switching from Term-First to Definition-First", Toast.LENGTH_SHORT).show();
+                seeFirst = "Definition";
+                String changeSeeFirst = "See Term First";
+                buttonSeeFirst.setText(changeSeeFirst);
+                is_definition = true; // The default should be the definition.
+            } else if (seeFirst.equals("Definition")) {
+                Toast.makeText(this, "Changing from Definition-First to Term-First", Toast.LENGTH_SHORT).show();
+                seeFirst = "Term";
+                String changeSeeFirst = "See Definition First";
+                buttonSeeFirst.setText(changeSeeFirst);
+                is_definition = false; // The default should be the term.
+            }
             showPracticeView();
         });
 
@@ -174,8 +191,12 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
         }
     }
 
-    public void switchBackToTerm() {
-       is_definition = false; // Switch the text view back as a term.
+    public void switchBackToDefault() {
+        if(seeFirst.equals("Term")) {
+            is_definition = false; // Switch the text view back as a term.
+        } else if (seeFirst.equals("Definition")) {
+            is_definition = true; // Switch the text view back as a definition.
+        }
     }
 
     // Source: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
