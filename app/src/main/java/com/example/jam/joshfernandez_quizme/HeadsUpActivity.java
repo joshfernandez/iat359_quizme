@@ -1,5 +1,6 @@
 package com.example.jam.joshfernandez_quizme;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HeadsUpActivity extends AppCompatActivity implements SensorEventListener {
@@ -17,6 +19,8 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
 
     private SensorManager mySensorManager;
     private Sensor myAccelerometer;
+
+    ArrayList<String> arrayListFlashcards = new ArrayList<String>(); // The array of flashcards transmitted from DisplayFlashcardsActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,14 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
 
         myAccelerometer = mySensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         textViewHeadsUpTerm = (TextView) findViewById(R.id.textViewHeadsUpTerm);
+
+
+        /*
+            PART C - Retrieve flashcard set.
+        */
+
+        Intent data = getIntent();
+        arrayListFlashcards = data.getStringArrayListExtra("Flashcard Set");
     }
 
     @Override

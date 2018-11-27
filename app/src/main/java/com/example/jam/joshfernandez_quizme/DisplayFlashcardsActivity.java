@@ -53,6 +53,7 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
             if(arrayListFlashcards.size() > 0) { // We can only proceed to play Heads Up! if there are flashcards in the set.
                 Toast.makeText(this, "Proceed to Heads Up Activity", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(DisplayFlashcardsActivity.this, HeadsUpActivity.class);
+                intent.putExtra("Flashcard Set", arrayListFlashcards);
                 startActivity(intent);
             }
             else {
