@@ -53,7 +53,8 @@
         <activity
             android:name=".HeadsUpActivity"
             android:label="Heads Up Game"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- This will lock the orientation portrait. -->
         <activity
             android:name=".UpdateFlashcardActivity"
             android:label="Update Flashcard" />
