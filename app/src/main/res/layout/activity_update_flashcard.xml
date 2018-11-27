@@ -74,9 +74,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#F50000"
-                android:text="Delete This Flashcard"
-                android:textColor="#FFFFFF" />
+                android:background="#E0E0E0"
+                android:text="Delete This Flashcard" />
 
             <Button
                 android:id="@+id/buttonUpdateFlashcard"
