@@ -26,7 +26,7 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
     private String[] current_flashcard;
     private String current_term;
 
-    private boolean viewNextTerm;
+    private boolean viewNextTerm, isFinished;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +70,7 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
         set_size = arrayListCurrent.size();
         current_position = 0;
         viewNextTerm = false;
+        isFinished = false;
 
         getNewFlashcard(current_position);
         showHeadsUpView();
@@ -125,11 +126,23 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
                         incrementCurrentPosition();
                         lockCurrentTerm();
                     }
-                    getNewFlashcard(current_position);
-                    setTerm = current_term;
-                    textViewHeadsUpTerm.setText(setTerm);
-                    textViewHeadsUpTerm.setTextColor(Color.BLACK);
-                    textViewHeadsUpTerm.setBackgroundColor(Color.WHITE);
+
+                    if(!isFinished)
+                    {
+                        getNewFlashcard(current_position);
+                        setTerm = current_term;
+                        textViewHeadsUpTerm.setText(setTerm);
+                        textViewHeadsUpTerm.setTextColor(Color.BLACK);
+                        textViewHeadsUpTerm.setBackgroundColor(Color.WHITE);
+                    }
+                    else
+                    {
+                        setTerm = "GAME FINISHED!";
+                        textViewHeadsUpTerm.setText(setTerm);
+                        textViewHeadsUpTerm.setTextColor(Color.WHITE);
+                        textViewHeadsUpTerm.setBackgroundColor(Color.rgb(255, 192, 0));
+                    }
+
                 }
 
             }
@@ -179,7 +192,7 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
         if (current_position + 1 < set_size) {
             current_position++;
         } else {
-            Toast.makeText(this, "Game Finished!", Toast.LENGTH_LONG).show();
+            isFinished = true;
         }
     }
 
