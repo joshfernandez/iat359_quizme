@@ -22,6 +22,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="#E0E0E0"
                 android:text="See Definition First" />
 
             <TextView
@@ -40,6 +41,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="#E0E0E0"
                 android:text="Shuffle" />
         </LinearLayout>
 
@@ -65,7 +67,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#FFC000"
+                android:background="#212121"
                 android:text="← Previous"
                 android:textColor="#FFFFFF" />
 
@@ -74,14 +76,16 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:text="Flip" />
+                android:background="#FFC000"
+                android:text="Flip"
+                android:textColor="#FFFFFF" />
 
             <Button
                 android:id="@+id/buttonNext"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#FFC000"
+                android:background="#212121"
                 android:text="Next →"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
