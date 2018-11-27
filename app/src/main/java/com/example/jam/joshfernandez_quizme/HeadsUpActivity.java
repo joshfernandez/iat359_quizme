@@ -8,7 +8,9 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,11 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
     private Sensor myAccelerometer;
 
     ArrayList<String> arrayListFlashcards = new ArrayList<String>(); // The array of flashcards transmitted from DisplayFlashcardsActivity
+    private ArrayList<String> arrayListCurrent = new ArrayList<String>(); // The current array being presented; used for shuffling
+
+    private int current_position, set_size;
+    private String[] current_flashcard;
+    private String current_term;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +60,19 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
 
         Intent data = getIntent();
         arrayListFlashcards = data.getStringArrayListExtra("Flashcard Set");
+
+        arrayListCurrent = arrayListFlashcards; // Make the array of flashcards the array to be presented
+
+
+        /*
+            PART D - Initialize the first flashcard on screen.
+        */
+
+        set_size = arrayListCurrent.size();
+        current_position = 0;
+
+        getNewFlashcard(current_position);
+        showHeadsUpView();
     }
 
     @Override
@@ -100,7 +120,7 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
                 } else {
                     // device is facing the opponent
 
-                    setTerm = "Term Given";
+                    setTerm = current_term;
                     textViewHeadsUpTerm.setText(setTerm);
                     textViewHeadsUpTerm.setTextColor(Color.BLACK);
                     textViewHeadsUpTerm.setBackgroundColor(Color.WHITE);
@@ -131,5 +151,21 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
         // Unregister listener - release the sensor
         mySensorManager.unregisterListener((SensorEventListener) this);
         super.onPause();
+    }
+
+
+    /*
+        HELPER FUNCTIONS
+    */
+
+    // Retrieves a new flashcard string and parses its term and definition
+    public void getNewFlashcard(int flashcard_position) {
+        current_flashcard = arrayListCurrent.get(flashcard_position).split(",");
+        current_term = current_flashcard[0].trim();
+    }
+
+    public void showHeadsUpView() {
+        Toast.makeText(this, current_term, Toast.LENGTH_SHORT).show();
+        textViewHeadsUpTerm.setText(current_term);
     }
 }
