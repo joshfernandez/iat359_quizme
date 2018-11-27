@@ -35,8 +35,6 @@ public class UpdateFlashcardActivity extends AppCompatActivity {
 
         buttonLookUp.setOnClickListener((v) -> {
             String term_given = editTextUpdateTerm.getText().toString();
-
-            Toast.makeText(this, "Proceed to the dictionary for " + term_given, Toast.LENGTH_SHORT).show();
             Uri webpage = Uri.parse("http://www.merriam-webster.com/dictionary/" + term_given);
             Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
             startActivity(webIntent);
@@ -51,8 +49,6 @@ public class UpdateFlashcardActivity extends AppCompatActivity {
             // Removes leading and trailing whitespace
             term_new.trim();
             definition_new.trim();
-
-            Toast.makeText(this, "Going back to Display Flashcards Activity with " + term_new + ": " + definition_new, Toast.LENGTH_SHORT).show();
 
             Intent i = getIntent(); // Getting the intent that has started this activity
             i.putExtra("Update Flashcard", "Update Flashcard");
@@ -69,8 +65,6 @@ public class UpdateFlashcardActivity extends AppCompatActivity {
         });
 
         buttonDeleteFlashcard.setOnClickListener((v) -> {
-
-            Toast.makeText(this, "Going back to Display Flashcards Activity with " + term_old + ": " + definition_old, Toast.LENGTH_SHORT).show();
 
             Intent i = getIntent(); // Getting the intent that has started this activity
             i.putExtra("Delete Flashcard", "Delete Flashcard");
