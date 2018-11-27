@@ -39,8 +39,6 @@ public class RegisterActivity extends AppCompatActivity {
             editor.putString("password", editTextPswd.getText().toString());
             editor.commit();
 
-            Toast.makeText(this, "Proceed to Login Activity", Toast.LENGTH_SHORT).show();
-
             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
             startActivity(intent);
         });

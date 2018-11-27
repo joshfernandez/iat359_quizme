@@ -20,13 +20,11 @@ public class MainMenuActivity extends AppCompatActivity {
         buttonUpdateSettings = (Button) findViewById(R.id.buttonUpdateSettings);
 
         buttonCreateNewFlashcardSet.setOnClickListener((v) -> {
-            Toast.makeText(this, "Proceed to Display Flashcards Activity", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainMenuActivity.this, DisplayFlashcardsActivity.class);
             startActivity(intent);
         });
 
         buttonUpdateSettings.setOnClickListener((v) -> {
-            Toast.makeText(this, "Proceed to Settings Activity", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainMenuActivity.this, SettingsActivity.class);
             startActivity(intent);
         });

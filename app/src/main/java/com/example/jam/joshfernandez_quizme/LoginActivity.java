@@ -32,11 +32,10 @@ public class LoginActivity extends AppCompatActivity {
             String password = sharedPreferences.getString("password", DEFAULT);
 
             if ((name.equals(editTextName.getText().toString())) && password.equals(editTextPswd.getText().toString())) {
-                Toast.makeText(this, "Proceed to Main Menu Activity", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
                 startActivity(intent);
             } else {
-                Toast.makeText(this, "Going back to Register Activity", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Username and/or password is invalid. Please register again.", Toast.LENGTH_LONG).show();
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear();
                 editor.commit();

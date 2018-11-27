@@ -72,8 +72,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         @Override
         public void onClick(View view) {
             Toast.makeText(holderContext,
-                    "Proceed to Update Flashcard Activity for " + ((TextView) view.findViewById(R.id.flashcardTermEntry)).getText().toString(),
-                    Toast.LENGTH_SHORT).show();
+                    "Updating the flashcard for " + ((TextView) view.findViewById(R.id.flashcardTermEntry)).getText().toString(),
+                    Toast.LENGTH_LONG).show();
 
             // The biggest accomplishment of my life!
             Intent intent = new Intent(holderContext, UpdateFlashcardActivity.class);
