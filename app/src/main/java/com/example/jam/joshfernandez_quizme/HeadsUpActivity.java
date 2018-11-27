@@ -127,7 +127,6 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
                     promptMessageEndGame();
                 }
 
-
             }
 
         }
