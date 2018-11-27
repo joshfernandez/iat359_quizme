@@ -8,7 +8,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,12 +16,10 @@ import java.util.List;
 
 public class HeadsUpActivity extends AppCompatActivity implements SensorEventListener {
 
+    ArrayList<String> arrayListFlashcards = new ArrayList<String>(); // The array of flashcards transmitted from DisplayFlashcardsActivity
     private TextView textViewHeadsUpTerm;
-
     private SensorManager mySensorManager;
     private Sensor myAccelerometer;
-
-    ArrayList<String> arrayListFlashcards = new ArrayList<String>(); // The array of flashcards transmitted from DisplayFlashcardsActivity
     private ArrayList<String> arrayListCurrent = new ArrayList<String>(); // The current array being presented; used for shuffling
 
     private int current_position, set_size;
@@ -124,8 +121,7 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
 
                 } else {
                     // device is facing the opponent
-                    if(viewNextTerm)
-                    {
+                    if (viewNextTerm) {
                         incrementCurrentPosition();
                         lockCurrentTerm();
                     }
@@ -187,11 +183,11 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
         }
     }
 
-    public void showNextTerm(){
+    public void showNextTerm() {
         viewNextTerm = true;
     }
 
-    public void lockCurrentTerm(){
+    public void lockCurrentTerm() {
         viewNextTerm = false;
     }
 }
