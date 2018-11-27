@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#212121"
+        android:padding="12dp"
         android:orientation="horizontal">
 
         <Space
@@ -22,12 +23,11 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:orientation="vertical"
-            android:padding="12dp"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imageViewQuizMeText"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="6"
