@@ -26,7 +26,8 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
     private String[] current_flashcard;
     private String current_term;
 
-    private boolean viewNextTerm, isFinished;
+    private boolean viewNextTerm; // Prompts the app to either stay on the current term or go to the next one
+    private boolean isFinished; // Prompts the app to display end message when the game is finished
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,11 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
         showHeadsUpView();
     }
 
+
+    /*
+        SENSOR FUNCTIONS
+    */
+
     @Override
     public void onSensorChanged(SensorEvent event) {
         int type = event.sensor.getType();
@@ -118,13 +124,13 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
                         textViewHeadsUpTerm.setBackgroundColor(Color.rgb(0, 204, 0));
                     }
 
-                    showNextTerm();
+                    showNextTerm(); // Prompt the app to go to the next term
 
                 } else {
                     // device is facing the opponent
-                    if (viewNextTerm) {
-                        incrementCurrentPosition();
-                        lockCurrentTerm();
+                    if (viewNextTerm) { // If the player chooses correct or incorrect
+                        incrementCurrentPosition(); // Go to the next term
+                        lockCurrentTerm(); // Stay on that term
                     }
 
                     if (!isFinished) {
