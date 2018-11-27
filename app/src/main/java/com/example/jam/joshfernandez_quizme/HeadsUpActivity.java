@@ -93,34 +93,40 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
                 int inclination = (int) Math.round(Math.toDegrees(Math.acos(g_force[2])));
                 float direction = event.values.clone()[2]; // z-value
 
-                if (inclination < 30 || inclination > 130) {
-                    // device is facing either up or down
+                if(!isFinished)
+                {
+                    if (inclination < 30 || inclination > 130) {
+                        // device is facing either up or down
 
-                    if (direction > 0) // facing up
-                    {
-                        promptMessageIncorrect();
-                    } else if (direction < 0) // facing down
-                    {
-                        promptMessageCorrect();
-                    }
+                        if (direction > 0) // facing up
+                        {
+                            promptMessageIncorrect();
+                        } else if (direction < 0) // facing down
+                        {
+                            promptMessageCorrect();
+                        }
 
-                    showNextTerm(); // Prompt the app to go to the next term
+                        showNextTerm(); // Prompt the app to go to the next term
 
-                } else {
-                    // device is facing the opponent
-                    if (viewNextTerm) { // If the player chooses correct or incorrect
-                        incrementCurrentPosition(); // Go to the next term
-                        lockCurrentTerm(); // Stay on that term
-                    }
-
-                    if (!isFinished) {
-                        getNewFlashcard(current_position);
-                        promptMessageCurrentTerm();
                     } else {
-                        promptMessageEndGame();
-                    }
+                        // device is facing the opponent
+                        if (viewNextTerm) { // If the player chooses correct or incorrect
+                            incrementCurrentPosition(); // Go to the next term
+                            lockCurrentTerm(); // Stay on that term
+                        }
 
+                        if(!isFinished)
+                        {
+                            getNewFlashcard(current_position);
+                            promptMessageCurrentTerm();
+                        }
+                    }
                 }
+                else // If the game is finished
+                {
+                    promptMessageEndGame();
+                }
+
 
             }
 
