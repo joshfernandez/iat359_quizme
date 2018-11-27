@@ -29,6 +29,8 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
     private String[] current_flashcard;
     private String current_term;
 
+    private boolean viewNextTerm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +72,7 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
 
         set_size = arrayListCurrent.size();
         current_position = 0;
+        viewNextTerm = false;
 
         getNewFlashcard(current_position);
         showHeadsUpView();
@@ -117,9 +120,16 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
                         textViewHeadsUpTerm.setBackgroundColor(Color.rgb(0, 204, 0));
                     }
 
+                    showNextTerm();
+
                 } else {
                     // device is facing the opponent
-
+                    if(viewNextTerm)
+                    {
+                        incrementCurrentPosition();
+                        lockCurrentTerm();
+                    }
+                    getNewFlashcard(current_position);
                     setTerm = current_term;
                     textViewHeadsUpTerm.setText(setTerm);
                     textViewHeadsUpTerm.setTextColor(Color.BLACK);
@@ -167,5 +177,21 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
     public void showHeadsUpView() {
         Toast.makeText(this, current_term, Toast.LENGTH_SHORT).show();
         textViewHeadsUpTerm.setText(current_term);
+    }
+
+    public void incrementCurrentPosition() {
+        if (current_position + 1 < set_size) {
+            current_position++;
+        } else {
+            Toast.makeText(this, "Game Finished!", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void showNextTerm(){
+        viewNextTerm = true;
+    }
+
+    public void lockCurrentTerm(){
+        viewNextTerm = false;
     }
 }
