@@ -107,16 +107,16 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
 
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        LinearLayout clickedRow = (LinearLayout) view;
-        TextView flashcardTermTextView = (TextView) view.findViewById(R.id.flashcardTermEntry);
-        TextView flashcardDefinitionTextView = (TextView) view.findViewById(R.id.flashcardDefinitionEntry);
-
-        Toast.makeText(this,
-                "row " + (1 + position) + ":  " + flashcardTermTextView.getText() + " --> " + flashcardDefinitionTextView.getText(),
-                Toast.LENGTH_LONG).show();
-    }
+    //@Override
+    //public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    //    LinearLayout clickedRow = (LinearLayout) view;
+    //    TextView flashcardTermTextView = (TextView) view.findViewById(R.id.flashcardTermEntry);
+    //    TextView flashcardDefinitionTextView = (TextView) view.findViewById(R.id.flashcardDefinitionEntry);
+    //
+    //    Toast.makeText(this,
+    //            "row " + (1 + position) + ":  " + flashcardTermTextView.getText() + " --> " + flashcardDefinitionTextView.getText(),
+    //            Toast.LENGTH_LONG).show();
+    //}
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
