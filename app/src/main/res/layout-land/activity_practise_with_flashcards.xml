@@ -12,27 +12,48 @@
         android:layout_margin="12dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textViewFlashcardPosition"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="center|center_vertical"
-            android:textColor="#BDBDBD"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:text="Current/TotalNumber" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonSeeFirst"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="See Definition First" />
+
+            <TextView
+                android:id="@+id/textViewFlashcardPosition"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center|center_vertical"
+                android:text="Current/TotalNumber"
+                android:textColor="#BDBDBD"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/buttonShuffle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Shuffle" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textViewPractiseMain"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="4"
+            android:layout_weight="5"
             android:gravity="center|center_vertical"
+            android:text="Flashcard"
             android:textColor="#000000"
             android:textSize="60sp"
-            android:textStyle="bold"
-            android:text="Flashcard" />
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
