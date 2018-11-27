@@ -127,16 +127,13 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
                         lockCurrentTerm();
                     }
 
-                    if(!isFinished)
-                    {
+                    if (!isFinished) {
                         getNewFlashcard(current_position);
                         setTerm = current_term;
                         textViewHeadsUpTerm.setText(setTerm);
                         textViewHeadsUpTerm.setTextColor(Color.BLACK);
                         textViewHeadsUpTerm.setBackgroundColor(Color.WHITE);
-                    }
-                    else
-                    {
+                    } else {
                         setTerm = "GAME FINISHED!";
                         textViewHeadsUpTerm.setText(setTerm);
                         textViewHeadsUpTerm.setTextColor(Color.WHITE);
