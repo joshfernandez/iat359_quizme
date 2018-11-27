@@ -107,8 +107,7 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
         });
 
         buttonShuffle.setOnClickListener((v) -> {
-            ArrayList<String> shuffledArray = shuffleArray(arrayListFlashcards);
-            arrayListCurrent = shuffledArray;
+            arrayListCurrent = shuffleArray(arrayListFlashcards);
             current_position = 0;
 
             switchBackToTerm();
