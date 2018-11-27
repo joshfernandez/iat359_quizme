@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,8 +16,9 @@ import java.util.ArrayList;
 public class PractiseWithFlashcardsActivity extends AppCompatActivity {
 
     private TextView textViewFlashcardPosition, textViewPractiseMain;
-    private Button buttonPrevious, buttonFlip, buttonNext;
+    private Button buttonPrevious, buttonFlip, buttonNext, buttonShuffle, buttonSeeFirst;
     ArrayList<String> arrayListFlashcards = new ArrayList<String>();
+    ArrayList<String> arrayListCurrent = new ArrayList<String>();
 
     private int current_position, set_size;
     private String[] current_flashcard;
@@ -38,6 +40,8 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
         buttonPrevious = (Button) findViewById(R.id.buttonPrevious);
         buttonFlip = (Button) findViewById(R.id.buttonFlip);
         buttonNext = (Button) findViewById(R.id.buttonNext);
+        buttonShuffle = (Button) findViewById(R.id.buttonShuffle);
+        buttonSeeFirst = (Button) findViewById(R.id.buttonSeeFirst);
 
 
         /*
@@ -52,7 +56,9 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
             PART C - Initialize the first flashcard on screen.
         */
 
-        set_size = arrayListFlashcards.size();
+        arrayListCurrent = arrayListFlashcards;
+
+        set_size = arrayListCurrent.size();
         current_position = 0;
         is_definition = false; // Show the term.
 
@@ -100,6 +106,17 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
             showPracticeView();
         });
 
+        buttonShuffle.setOnClickListener((v) -> {
+            ArrayList<String> shuffledArray = shuffleArray(arrayListFlashcards);
+            arrayListCurrent = shuffledArray;
+            current_position = 0;
+
+            switchBackToTerm();
+            setCurrentPosition(current_position);
+            getNewFlashcard(current_position);
+            showPracticeView();
+        });
+
 
         /*
             PART E - Set textView onClickListener.
@@ -114,7 +131,7 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
     }
 
     public void getNewFlashcard(int flashcard_position) {
-        current_flashcard = arrayListFlashcards.get(flashcard_position).split(",");
+        current_flashcard = arrayListCurrent.get(flashcard_position).split(",");
         current_term = current_flashcard[0].trim();
         current_definition = current_flashcard[1].trim();
     }
@@ -160,6 +177,29 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
 
     public void switchBackToTerm() {
        is_definition = false; // Switch the text view back as a term.
+    }
+
+    // Source: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+    public ArrayList<String> shuffleArray(ArrayList<String> arrList) {
+        int currentIndex = arrList.size();
+        String temporaryValue;
+        int randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 != currentIndex) {
+
+            // Pick a remaining element...
+            double draftRandomIndex = Math.floor(Math.random() * currentIndex);
+            randomIndex = (int) draftRandomIndex ;
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = arrList.get(currentIndex);
+            arrList.set(currentIndex, arrList.get(randomIndex));
+            arrList.set(randomIndex, temporaryValue);
+        }
+
+        return arrList;
     }
 
 }
