@@ -19,11 +19,21 @@ public class UpdateFlashcardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_flashcard);
 
+
+        /*
+            PART A - Prepare UI elements and listeners.
+        */
+
         buttonUpdateFlashcard = (Button) findViewById(R.id.buttonUpdateFlashcard);
         buttonDeleteFlashcard = (Button) findViewById(R.id.buttonDeleteFlashcard);
         buttonLookUp = (Button) findViewById(R.id.buttonLookUp);
         editTextUpdateTerm = (EditText) findViewById(R.id.editTextUpdateTerm);
         editTextUpdateDefinition = (EditText) findViewById(R.id.editTextUpdateDefinition);
+
+
+        /*
+            PART B - Retrieve intent and define term and definition.
+        */
 
         Intent data = getIntent();
 
@@ -33,10 +43,15 @@ public class UpdateFlashcardActivity extends AppCompatActivity {
         editTextUpdateTerm.setText(term_old);
         editTextUpdateDefinition.setText(definition_old);
 
+
+        /*
+            PART C - Set button onClickListeners.
+        */
+
         buttonLookUp.setOnClickListener((v) -> {
             String term_given = editTextUpdateTerm.getText().toString();
-            Uri webpage = Uri.parse("http://www.merriam-webster.com/dictionary/" + term_given);
-            Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
+            Uri web_page = Uri.parse("http://www.merriam-webster.com/dictionary/" + term_given);
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, web_page);
             startActivity(webIntent);
         });
 

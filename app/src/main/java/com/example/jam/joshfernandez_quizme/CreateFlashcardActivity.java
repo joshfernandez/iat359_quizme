@@ -27,8 +27,8 @@ public class CreateFlashcardActivity extends AppCompatActivity {
 
         buttonLookUp.setOnClickListener((v) -> {
             String term_given = editTextFlashcardTerm.getText().toString();
-            Uri webpage = Uri.parse("http://www.merriam-webster.com/dictionary/" + term_given);
-            Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
+            Uri web_page = Uri.parse("http://www.merriam-webster.com/dictionary/" + term_given);
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, web_page);
             startActivity(webIntent);
         });
 

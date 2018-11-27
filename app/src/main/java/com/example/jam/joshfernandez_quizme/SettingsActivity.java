@@ -23,12 +23,12 @@ import java.util.Date;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private static final int CAMERA_CAPTURE_IMAGE_PREVIEW = 3;
-    private static final String IMAGE_FILE = "IMAGE_FILE";
+    private static final int CAMERA_CAPTURE_IMAGE_PREVIEW = 3; // Used as a request code
+    private static final String IMAGE_FILE = "IMAGE_FILE"; // Stores image file inside shared preferences
     public SharedPreferences sharedPreferences;
     private TextView textViewProfileName;
-    private String DEFAULT = "NULL";
-    private String mCurrentPhotoPath;
+    private String DEFAULT = "NULL"; // Used for shared preferences
+    private String currentPhotoPath;
     private Button buttonTakeProfilePic;
     private ImageView imageProfile;
 
@@ -62,7 +62,7 @@ public class SettingsActivity extends AppCompatActivity {
          */
 
         if (!savedPhotoPath.equals(DEFAULT)) {
-            mCurrentPhotoPath = savedPhotoPath;
+            currentPhotoPath = savedPhotoPath;
             previewCapturedImage();
         }
 
@@ -74,6 +74,10 @@ public class SettingsActivity extends AppCompatActivity {
             dispatchTakePictureIntent(CAMERA_CAPTURE_IMAGE_PREVIEW);
         });
     }
+
+    /*
+        CAMERA HELPER FUNCTIONS
+    */
 
     private void dispatchTakePictureIntent(int requestCode) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -104,7 +108,9 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            previewCapturedImage();
+            if (requestCode == CAMERA_CAPTURE_IMAGE_PREVIEW) {
+                previewCapturedImage();
+            }
         } else if (resultCode == RESULT_CANCELED) {
             // user cancelled Image capture
             Toast.makeText(this, "Image capture cancelled.", Toast.LENGTH_LONG).show();
@@ -120,8 +126,8 @@ public class SettingsActivity extends AppCompatActivity {
     private void previewCapturedImage() {
         try {
             imageProfile.setVisibility(View.VISIBLE);
-            Log.d("preview", mCurrentPhotoPath);
-            final Bitmap bitmap = CameraUtils.scaleDownAndRotatePic(mCurrentPhotoPath);
+            Log.d("preview", currentPhotoPath);
+            final Bitmap bitmap = CameraUtils.scaleDownAndRotatePic(currentPhotoPath);
             imageProfile.setImageBitmap(bitmap);
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -140,17 +146,22 @@ public class SettingsActivity extends AppCompatActivity {
         );
 
         // Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = image.getAbsolutePath();
+        currentPhotoPath = image.getAbsolutePath();
         savePhotoPathToSharedPrefs();
         return image;
     }
+
+
+    /*
+        OTHER HELPER FUNCTIONS
+    */
 
     // Save the image file location
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putString(IMAGE_FILE, mCurrentPhotoPath);
+        outState.putString(IMAGE_FILE, currentPhotoPath);
     }
 
     // Retrieve the image file location
@@ -158,13 +169,13 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
-        mCurrentPhotoPath = savedInstanceState.getString(IMAGE_FILE);
+        currentPhotoPath = savedInstanceState.getString(IMAGE_FILE);
         previewCapturedImage();
     }
 
     private void savePhotoPathToSharedPrefs() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("photoPath", mCurrentPhotoPath);
+        editor.putString("photoPath", currentPhotoPath);
         editor.commit();
     }
 

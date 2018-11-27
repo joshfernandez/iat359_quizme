@@ -10,8 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -25,9 +23,9 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
     private String DEFAULT = "NULL";
     private RecyclerView recyclerViewFlashcards;
     private RecyclerView.LayoutManager myLayoutManager;
-    private MyDatabase db;
+    private MyDatabase myDatabase;
     private MyAdapter myAdapter;
-    private MyHelper helper;
+    private MyHelper myHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,10 +82,10 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
             PART C - Prepare SQLite Database.
          */
 
-        db = new MyDatabase(this);
-        helper = new MyHelper(this);
+        myDatabase = new MyDatabase(this);
+        myHelper = new MyHelper(this);
 
-        Cursor cursor = db.getData();
+        Cursor cursor = myDatabase.getData();
 
         int index1 = cursor.getColumnIndex(Constants.TERM);
         int index2 = cursor.getColumnIndex(Constants.DEFINITION);
@@ -160,10 +158,10 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
 
     public void addFlashcard(String term, String definition) {
         // First, we need to take care of duplicate flashcards.
-        if (!db.getSelectedData(term).isEmpty()) {
+        if (!myDatabase.getSelectedData(term).isEmpty()) {
             Toast.makeText(this, "ERROR: You cannot add a duplicate flashcard of the same term " + term, Toast.LENGTH_LONG).show();
         } else {
-            long id = db.insertData(term, definition);
+            long id = myDatabase.insertData(term, definition);
 
             if (id < 0) {
                 Log.e("Add Flashcard", "Flashcard creation failed for " + term);
@@ -174,7 +172,7 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
     }
 
     public void updateFlashcard(String term_old, String term_new, String definition) {
-        long id = db.updateData(term_old, term_new, definition);
+        long id = myDatabase.updateData(term_old, term_new, definition);
 
         if (id < 0) {
             Log.e("Update Flashcard", "Flashcard update failed for " + term_old + " --> " + term_new);
@@ -184,7 +182,7 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
     }
 
     public void deleteFlashcard(String term) {
-        long id = db.deleteData(term);
+        long id = myDatabase.deleteData(term);
 
         if (id < 0) {
             Log.e("Delete Flashcard", "Flashcard deletion failed for " + term);
@@ -197,7 +195,7 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
         arrayListFlashcards.clear();
         myAdapter.notifyDataSetChanged(); // advise the adapter that the data set has changed
 
-        Cursor cursor = db.getData();
+        Cursor cursor = myDatabase.getData();
 
         int index1 = cursor.getColumnIndex(Constants.TERM);
         int index2 = cursor.getColumnIndex(Constants.DEFINITION);
