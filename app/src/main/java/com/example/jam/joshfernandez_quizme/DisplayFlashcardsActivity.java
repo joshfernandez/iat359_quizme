@@ -50,9 +50,16 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
         });
 
         buttonPlayHeadsUp.setOnClickListener((v) -> {
-            Toast.makeText(this, "Proceed to Heads Up Activity", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(DisplayFlashcardsActivity.this, HeadsUpActivity.class);
-            startActivity(intent);
+            if(arrayListFlashcards.size() > 0) { // We can only proceed to play Heads Up! if there are flashcards in the set.
+                Toast.makeText(this, "Proceed to Heads Up Activity", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(DisplayFlashcardsActivity.this, HeadsUpActivity.class);
+                intent.putExtra("Flashcard Set", arrayListFlashcards);
+                startActivity(intent);
+            }
+            else {
+                Toast.makeText(this, "Sorry! We cannot play Heads Up! on an empty flashcard set.", Toast.LENGTH_LONG).show();
+            }
+
         });
 
         buttonPractise.setOnClickListener((v) -> {
