@@ -30,7 +30,8 @@
 
         <activity
             android:name=".RegisterActivity"
-            android:label="Sign Up as a new QuizMe user">
+            android:label="Sign Up as a new QuizMe user"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,7 +40,8 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="Log-In to QuizMe" />
+            android:label="Log-In to QuizMe"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainMenuActivity" />
         <activity
             android:name=".DisplayFlashcardsActivity"
