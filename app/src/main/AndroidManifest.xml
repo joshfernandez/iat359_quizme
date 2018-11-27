@@ -56,7 +56,10 @@
         <activity
             android:name=".UpdateFlashcardActivity"
             android:label="Update Flashcard" />
-        <activity android:name=".PractiseWithFlashcardsActivity" android:label="Flashcard Practice"></activity>
+        <activity
+            android:name=".PractiseWithFlashcardsActivity"
+            android:label="Flashcard Practice"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
