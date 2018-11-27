@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,22 +10,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="12dp">
+        android:padding="12dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
 
-        <TextView
-            android:id="@+id/textViewLoginName"
+        <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
-            android:text="User Name:" />
+            android:layout_weight="4" />
 
-        <EditText
-            android:id="@+id/editTextLoginName"
+        <ImageView
+            android:id="@+id/imageViewQuizMeText"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            android:layout_weight="4"
+            app:srcCompat="@drawable/quizme_text_logo" />
 
         <Space
             android:layout_width="match_parent"
@@ -32,31 +32,65 @@
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/textViewLoginPswd"
+            android:id="@+id/textViewLoginTitle"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
+            android:gravity="center|center_vertical"
+            android:text="Log-In to your account."
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewLoginName"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:text="Username:" />
+
+        <EditText
+            android:id="@+id/editTextLoginName"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/textViewLoginPswd"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom"
             android:text="Password:" />
 
         <EditText
             android:id="@+id/editTextLoginPswd"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:ems="10"
             android:inputType="textPassword" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
-            android:background="#E0E0E0"
-            android:text="Login" />
+            android:layout_weight="2"
+            android:background="#FFC000"
+            android:text="Login"
+            android:textColor="#FFFFFF" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="14" />
+            android:layout_weight="4" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
