@@ -107,10 +107,10 @@ public class SettingsActivity extends AppCompatActivity {
             previewCapturedImage();
         } else if (resultCode == RESULT_CANCELED) {
             // user cancelled Image capture
-            Toast.makeText(this, "Image capture cancelled.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Image capture cancelled.", Toast.LENGTH_LONG).show();
         } else {
             // failed to capture image
-            Toast.makeText(getApplicationContext(), "Image capture failed.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Image capture failed.", Toast.LENGTH_LONG).show();
         }
     }
 

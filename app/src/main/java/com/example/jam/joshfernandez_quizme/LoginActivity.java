@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
                 startActivity(intent);
             } else {
-                Toast.makeText(this, "Username and/or password is invalid. Please register again.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Username and/or password is invalid. Please register again.", Toast.LENGTH_LONG).show();
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear();
                 editor.commit();

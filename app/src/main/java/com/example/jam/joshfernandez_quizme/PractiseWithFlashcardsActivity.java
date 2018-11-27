@@ -125,7 +125,7 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
         buttonSeeFirst.setOnClickListener((v) -> {
             if (seeFirst.equals("Term")) { // If the layout is term-first, change it to definition-first
 
-                Toast.makeText(this, "Switching from Term-First to Definition-First", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Switching from Term-First to Definition-First", Toast.LENGTH_LONG).show();
 
                 seeFirst = "Definition";
                 is_definition = true; // The default should be the definition.
@@ -136,7 +136,7 @@ public class PractiseWithFlashcardsActivity extends AppCompatActivity {
 
             } else if (seeFirst.equals("Definition")) { // If the layout is definition-first, change it to term-first
 
-                Toast.makeText(this, "Switching from Definition-First to Term-First", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Switching from Definition-First to Term-First", Toast.LENGTH_LONG).show();
 
                 seeFirst = "Term";
                 is_definition = false; // The default should be the term.
