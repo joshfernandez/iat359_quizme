@@ -93,8 +93,7 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
                 int inclination = (int) Math.round(Math.toDegrees(Math.acos(g_force[2])));
                 float direction = event.values.clone()[2]; // z-value
 
-                if(!isFinished)
-                {
+                if (!isFinished) {
                     if (inclination < 30 || inclination > 130) {
                         // device is facing either up or down
 
@@ -115,14 +114,12 @@ public class HeadsUpActivity extends AppCompatActivity implements SensorEventLis
                             lockCurrentTerm(); // Stay on that term
                         }
 
-                        if(!isFinished)
-                        {
+                        if (!isFinished) {
                             getNewFlashcard(current_position);
                             promptMessageCurrentTerm();
                         }
                     }
-                }
-                else // If the game is finished
+                } else // If the game is finished
                 {
                     promptMessageEndGame();
                 }
