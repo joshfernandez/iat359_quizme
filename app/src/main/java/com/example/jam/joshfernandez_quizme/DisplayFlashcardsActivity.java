@@ -43,14 +43,12 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
         buttonPractise = (Button) findViewById(R.id.buttonPractise);
 
         buttonCreateNewFlashcard.setOnClickListener((v) -> {
-            Toast.makeText(this, "Proceed to Create Flashcard Activity", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(DisplayFlashcardsActivity.this, CreateFlashcardActivity.class);
             startActivityForResult(intent, REQUEST_CREATE_FLASHCARD);
         });
 
         buttonPlayHeadsUp.setOnClickListener((v) -> {
             if (arrayListFlashcards.size() > 0) { // We can only proceed to play Heads Up! if there are flashcards in the set.
-                Toast.makeText(this, "Proceed to Heads Up Activity", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(DisplayFlashcardsActivity.this, HeadsUpActivity.class);
                 intent.putExtra("Flashcard Set", arrayListFlashcards);
                 startActivity(intent);
@@ -62,7 +60,6 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
 
         buttonPractise.setOnClickListener((v) -> {
             if (arrayListFlashcards.size() > 0) { // We can only proceed to practise if there are flashcards in the set.
-                Toast.makeText(this, "Proceed to Practise With Flashcards Activity", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(DisplayFlashcardsActivity.this, PractiseWithFlashcardsActivity.class);
                 intent.putExtra("Flashcard Set", arrayListFlashcards);
                 startActivity(intent);
@@ -129,7 +126,6 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
             {
 
                 if (data.hasExtra("Term Given")) {
-                    Toast.makeText(this, "DisplayFlashcards Successful. Flashcard will be added.", Toast.LENGTH_SHORT).show();
                     String term_given = data.getExtras().getString("Term Given");
                     String definition_given = data.getExtras().getString("Definition Given");
 
@@ -144,7 +140,6 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
             {
 
                 if (data.hasExtra("Update Flashcard")) {
-                    Toast.makeText(this, "DisplayFlashcards Successful. Flashcard will be updated.", Toast.LENGTH_SHORT).show();
                     String term_to_be_updated = data.getExtras().getString("Term To Be Updated");
                     String term_given = data.getExtras().getString("Term Given");
                     String definition_given = data.getExtras().getString("Definition Given");
@@ -152,7 +147,6 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
                     updateFlashcard(term_to_be_updated, term_given, definition_given);
                     updateRecyclerViewFlashcards();
                 } else if (data.hasExtra("Delete Flashcard")) {
-                    Toast.makeText(this, "DisplayFlashcards Successful. Flashcard will be deleted.", Toast.LENGTH_SHORT).show();
                     String term_given = data.getExtras().getString("Term To Be Deleted");
                     deleteFlashcard(term_given);
                     updateRecyclerViewFlashcards();
@@ -165,8 +159,6 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
     }
 
     public void addFlashcard(String term, String definition) {
-        Toast.makeText(this, "Adding " + term + ": " + definition, Toast.LENGTH_SHORT).show();
-
         // First, we need to take care of duplicate flashcards.
         if (!db.getSelectedData(term).isEmpty()) {
             Toast.makeText(this, "ERROR: You cannot add a duplicate flashcard of the same term " + term, Toast.LENGTH_LONG).show();
@@ -174,32 +166,30 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
             long id = db.insertData(term, definition);
 
             if (id < 0) {
-                Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
+                Log.e("Add Flashcard", "Flashcard creation failed for " + term);
             } else {
-                Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
+                // Creation successful - nothing happens
             }
         }
     }
 
     public void updateFlashcard(String term_old, String term_new, String definition) {
-        Toast.makeText(this, "Updating " + term_old + " to " + term_new + ": " + definition, Toast.LENGTH_SHORT).show();
         long id = db.updateData(term_old, term_new, definition);
 
         if (id < 0) {
-            Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
+            Log.e("Update Flashcard", "Flashcard update failed for " + term_old + " --> " + term_new);
         } else {
-            Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
+            // Update successful - nothing happens
         }
     }
 
     public void deleteFlashcard(String term) {
-        Toast.makeText(this, "Deleting flashcard of " + term, Toast.LENGTH_SHORT).show();
         long id = db.deleteData(term);
 
         if (id < 0) {
-            Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
+            Log.e("Delete Flashcard", "Flashcard deletion failed for " + term);
         } else {
-            Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
+            // Deletion successful - nothing happens
         }
     }
 
@@ -222,7 +212,7 @@ public class DisplayFlashcardsActivity extends AppCompatActivity implements Adap
             cursor.moveToNext();
         }
 
-        Log.v("h2", "" + arrayListFlashcards);
+        Log.v("Update recyclerViewFlashcards", "" + arrayListFlashcards);
 
         myAdapter.notifyDataSetChanged();  // advise the adapter that the data set has changed
     }
